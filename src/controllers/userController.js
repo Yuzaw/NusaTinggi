@@ -1,53 +1,52 @@
-const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken');
-const users = require('../data/users');
+const bcrypt = require('bcrypt');
+const users = require('../models/users'); //Database sementara
+
+const SECRET_KEY = process.env.SECRET_KEY;
 
 // Register
 exports.register = async (req, res) => {
-  const { username, password } = req.body;
-
-  const userExists = users.some((user) => user.username === username);
+  const { username, email, password, gender, age } = req.body;
+  const userExists = users.some((user) => user.username === username || user.email === email);
 
   if (userExists) {
-    return res.status(400).json({ message: 'User already exists' });
+    return res.status(400).json({ message: 'User with this username or email already exists' });
   }
 
   const hashedPassword = await bcrypt.hash(password, 10);
-
-  users.push({ username, password: hashedPassword });
+  users.push({ username, email, password: hashedPassword, gender, age });
   res.status(201).json({ message: 'User registered successfully' });
 };
 
 // Login
-exports.login = (req, res) => {
-  const { username, password } = req.body;
-
-  const user = users.find((user) => user.username === username);
+exports.login = async (req, res) => {
+  const { username, email, password } = req.body;
+  const user = users.find(
+    (user) => user.username === username || user.email === email
+  );
 
   if (!user) {
     return res.status(401).json({ message: 'Invalid credentials' });
   }
 
-  bcrypt.compare(password, user.password, (err, result) => {
-    if (err) {
-      return res.status(500).json({ message: 'Error comparing passwords' });
-    }
-    if (!result) {
-      return res.status(401).json({ message: 'Invalid credentials' });
-    }
+  const isMatch = await bcrypt.compare(password, user.password);
 
-    const accessToken = jwt.sign({ username: user.username }, 'supersecretkey', { expiresIn: '1h' });
-    res.status(200).json({ accessToken });
-  });
+  if (!isMatch) {
+    return res.status(401).json({ message: 'Invalid credentials' });
+  }
+
+  const accessToken = jwt.sign({ username: user.username, email: user.email }, SECRET_KEY, { expiresIn: '10m' });
+  res.cookie('token', accessToken, { httpOnly: true, secure: true });
+  res.status(200).json({ message: 'Login successful, token set in cookie' });
 };
 
+// Middleware untuk Verifikasi Token
 exports.authenticateToken = (req, res, next) => {
-  const authHeader = req.headers['authorization'];
-  const token = authHeader && authHeader.split(' ')[1];
+  const token = req.cookies.token;
 
   if (!token) return res.status(401).json({ message: 'Token not found' });
 
-  jwt.verify(token, 'supersecretkey', (err, user) => {
+  jwt.verify(token, SECRET_KEY, (err, user) => {
     if (err) return res.status(403).json({ message: 'Invalid token' });
     req.user = user;
     next();
