@@ -1,0 +1,23 @@
+{
+  "name": "nusatinggi-backend",
+  "version": "1.0.0",
+  "main": "index.js",
+  "scripts": {
+    "start": "nodemon ./src/server.js",
+    "lint": "eslint ./"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "description": "",
+  "dependencies": {
+    "express": "^4.21.1"
+  },
+  "devDependencies": {
+    "@eslint/js": "^9.14.0",
+    "eslint": "^9.14.0",
+    "eslint-config-dicodingacademy": "^0.9.4",
+    "globals": "^15.12.0",
+    "nodemon": "^3.1.7"
+  }
+}
