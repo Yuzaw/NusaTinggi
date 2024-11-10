@@ -17,10 +17,9 @@
   </div>
 
   <script>
-    // Check if the token is present in localStorage
     const token = localStorage.getItem('accessToken');
     if (!token) {
-      window.location.href = 'login.html'; // Redirect to login if no token
+      window.location.href = 'login.html';
     }
   </script>
 </body>
