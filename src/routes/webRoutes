@@ -1,0 +1,22 @@
+const express = require('express');
+const path = require('path');
+const router = express.Router();
+
+
+router.get('/', (req, res) => {
+  res.sendFile(path.join(__dirname, '..', 'public', 'landingpage.html'));
+});
+router.get('/homepage.html', (req, res) => {
+  res.sendFile(path.join(__dirname, '..', 'public', 'home.html'));
+});
+router.get('/register.html', (req, res) => {
+  res.sendFile(path.join(__dirname, '..', 'public', 'register.html'));
+});
+router.get('/login.html', (req, res) => {
+  res.sendFile(path.join(__dirname, '..', 'public', 'login.html'));
+});
+router.get('/profile.html', (req, res) => {
+  res.sendFile(path.join(__dirname, '..', 'public', 'profile.html'));
+});
+
+module.exports = router;
