@@ -52,3 +52,21 @@ exports.authenticateToken = (req, res, next) => {
     next();
   });
 };
+
+//data profil
+exports.getProfile = (req, res) => {
+  const { username, email } = req.user;
+
+  const user = users.find((user) => user.username === username || user.email === email);
+
+  if (!user) {
+    return res.status(404).json({ message: 'User not found' });
+  }
+
+  res.status(200).json({
+    username: user.username,
+    email: user.email,
+    gender: user.gender,
+    age: user.age
+  });
+};
