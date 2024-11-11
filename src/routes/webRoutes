@@ -18,5 +18,11 @@ router.get('/login.html', (req, res) => {
 router.get('/profile.html', (req, res) => {
   res.sendFile(path.join(__dirname, '..', 'public', 'profile.html'));
 });
+router.get('/community.html', (req, res) => {
+  res.sendFile(path.join(__dirname, '..', 'public', 'community.html'));
+});
+router.get('/addNote.html', (req, res) => {
+  res.sendFile(path.join(__dirname, '..', 'public', 'addNote.html'));
+});
 
 module.exports = router;

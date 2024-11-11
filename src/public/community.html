@@ -1,0 +1,50 @@
+<!-- public/community.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Community - Notes</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body>
+  <div class="container mt-5">
+    <h1 class="text-center">Community Notes</h1>
+    <div class="mb-3">
+      <a href="/addNote.html" class="btn btn-primary">Add New Note</a>
+      <a href="/homepage.html" class="btn btn-primary">Back</a>
+    </div>
+    <div id="notes-container">
+      <!-- The notes will appear here after being fetched -->
+    </div>
+  </div>
+
+  <script>
+    // Mengambil semua catatan dari API dan menampilkannya
+    window.onload = function() {
+      fetch('/API/community')
+        .then(response => response.json())
+        .then(data => {
+          data.forEach(note => displayNote(note));
+        })
+        .catch(error => console.error('Error fetching notes:', error));
+    }
+
+    // Menampilkan note di halaman
+    function displayNote(note) {
+      const noteContainer = document.getElementById('notes-container');
+      const noteElement = document.createElement('div');
+      noteElement.classList.add('card', 'mb-3');
+      noteElement.innerHTML = `
+        <div class="card-body">
+          <h5 class="card-title">${note.title}</h5>
+          <p class="card-text">${note.description}</p>
+        </div>
+      `;
+      noteContainer.appendChild(noteElement);
+    }
+  </script>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
