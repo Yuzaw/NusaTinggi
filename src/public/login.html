@@ -21,7 +21,7 @@
       <button type="submit" class="btn btn-primary w-100">Login</button>
     </form>
     <div class="text-center mt-3">
-      <p>Don't have an account? <a href="register.html">Register here</a></p>
+      <p>Don't have an account? <a href="/register.html">Register here</a></p>
     </div>
     <div class="position-absolute top-0 end-0 p-3">
       <a href="/" class="btn btn-secondary">Back</a>
@@ -35,7 +35,7 @@
       const password = document.getElementById('password').value;
 
       try {
-        const response = await fetch('http://localhost:3000/login', {
+        const response = await fetch('http://localhost:3000/API/login', {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
           body: JSON.stringify({ username: usernameOrEmail, email: usernameOrEmail, password }),

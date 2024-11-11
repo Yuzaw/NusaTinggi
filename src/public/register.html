@@ -37,7 +37,7 @@
       <button type="submit" class="btn btn-primary w-100">Register</button>
     </form>
     <div class="text-center mt-3">
-      <p>Already have an account? <a href="login.html">Login here</a></p>
+      <p>Already have an account? <a href="/login.html">Login here</a></p>
     </div>
     <div class="position-absolute top-0 end-0 p-3">
       <a href="/" class="btn btn-secondary">Back</a>
@@ -54,7 +54,7 @@
       const age = document.getElementById('age').value;
 
       try {
-        const response = await fetch('http://localhost:3000/register', {
+        const response = await fetch('http://localhost:3000/API/register', {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
           body: JSON.stringify({ username, email, password, gender, age }),
