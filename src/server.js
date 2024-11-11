@@ -4,7 +4,6 @@ const path = require('path');
 const cookieParser = require('cookie-parser');
 const API = require('./routes/API');
 const webRoutes = require('./routes/webRoutes');
-// const productRoutes = require('./routes/productRoutes');
 
 const app = express();
 const PORT = process.env.PORT || 3000;
@@ -15,8 +14,6 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/API', API);
 app.use('/', webRoutes);
-//product
-// app.use('/', productRoutes);
 
 app.listen(PORT, () => {
   console.log(`Server is running on http://localhost:${PORT}`);
