@@ -56,7 +56,6 @@ exports.authenticateToken = (req, res, next) => {
 //data profil
 exports.getProfile = (req, res) => {
   const { username, email } = req.user;
-
   const user = users.find((user) => user.username === username || user.email === email);
 
   if (!user) {
