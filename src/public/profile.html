@@ -32,7 +32,7 @@
       </table>
     </div>
     <div class="text-center mt-3">
-      <a href="homepage.html" class="btn btn-secondary">Back</a>
+      <a href="/homepage.html" class="btn btn-secondary">Back</a>
     </div>
   </div>
 
@@ -44,7 +44,7 @@
     }
 
     async function fetchUserProfile() {
-      const response = await fetch('http://localhost:3000/profile', {
+      const response = await fetch('http://localhost:3000/API/profile', {
         method: 'GET',
         headers: {
           'Authorization': 'Bearer ' + token
