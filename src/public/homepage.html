@@ -14,6 +14,14 @@
       <a href="profile.html" class="btn btn-primary">Go to Profile</a>
       <a href="login.html" class="btn btn-secondary">Logout</a>
     </div>
+    
+    <!-- Recommendation List Section -->
+    <div id="recommendation-list" class="mt-5">
+      <h2 class="text-center">Recommended for You</h2>
+      <div class="row">
+        <!-- Recommendation items will be displayed here -->
+      </div>
+    </div>
   </div>
 
   <script>
@@ -21,6 +29,43 @@
     if (!token) {
       window.location.href = 'login.html';
     }
+
+    // Function to fetch recommendations from the backend
+    async function fetchRecommendations() {
+      try {
+        const response = await fetch('product/recommendations', {
+          headers: { 'Authorization': `Bearer ${token}` } // Include token if needed for authentication
+        });
+
+        if (!response.ok) throw new Error('Failed to fetch recommendations');
+
+        const recommendations = await response.json();
+
+        // Display recommendations on the page
+        const recommendationList = document.getElementById('recommendation-list').querySelector('.row');
+        recommendations.forEach(product => {
+          const productItem = document.createElement('div');
+          productItem.classList.add('col-md-4', 'mb-4');
+          productItem.innerHTML = `
+            <div class="card">
+              <img src="${product.image}" class="card-img-top" alt="${product.title}">
+              <div class="card-body">
+                <h5 class="card-title">${product.title}</h5>
+                <p class="card-text">${product.description}</p>
+                <p class="card-text"><strong>Rating:</strong> ${product.rating}</p>
+                <p class="card-text"><strong>Price:</strong> ${product.price}</p>
+              </div>
+            </div>
+          `;
+          recommendationList.appendChild(productItem);
+        });
+      } catch (error) {
+        console.error('Error loading recommendations:', error);
+      }
+    }
+
+    // Fetch recommendations on page load
+    fetchRecommendations();
   </script>
 </body>
 </html>
