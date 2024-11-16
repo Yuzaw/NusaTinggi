@@ -43,19 +43,62 @@ const addProduct = (req, res) => {
   res.status(201).json(newProduct);
 };
 
-const getTopRatedProducts = (req, res) => {
-  // Sort products by rating in descending order and take the top 6
-  const topRated = [...products]
-    .sort((a, b) => b.rating - a.rating)
-    .slice(0, 10);
+const getTopRecommendedProducts = (req, res) => {
+  // Sort by rating and jumlahPembeli, prioritize high rating, then high jumlahPembeli
+  const recommendedProducts = [...products]
+    .sort((a, b) => {
+      // Sort by rating first, then by jumlahPembeli if ratings are the same
+      if (b.rating === a.rating) {
+        return b.jumlahPembeli - a.jumlahPembeli;
+      }
+      return b.rating - a.rating;
+    })
+    .slice(0, 10); // Get top 10 products
 
-  // Return the top-rated products
-  res.json(topRated);
+  res.json(recommendedProducts);
 };
+
+
+
+// Function to increment jumlahPembeli (total buyers) for a product
+const incrementJumlahPembeli = (req, res) => {
+  const productId = parseInt(req.params.id);
+  const product = products.find((p) => p.id === productId);
+
+  if (product) {
+    product.jumlahPembeli += 1;
+    res.json({ message: 'Purchase recorded', product });
+  } else {
+    res.status(404).json({ message: 'Product not found' });
+  }
+};
+
+// Function to add a rating to a product and update jumlahRating and rating
+const addRating = (req, res) => {
+  const productId = parseInt(req.params.id);
+  const { newRating } = req.body; // Assume newRating is passed in request body
+  const product = products.find((p) => p.id === productId);
+
+  if (product && newRating >= 1 && newRating <= 5) {
+    // Update jumlahRating and recalculate average rating
+    const totalRatingScore = product.rating * product.jumlahRating + newRating;
+    product.jumlahRating += 1;
+    product.rating = totalRatingScore / product.jumlahRating;
+
+    res.json({ message: 'Rating added', product });
+  } else {
+    res.status(400).json({ message: 'Invalid rating or product not found' });
+  }
+};
+
+// Other existing functions (getAllProducts, getProductById, addProduct, etc.)
 
 module.exports = {
   getAllProducts,
   getProductById,
   addProduct,
-  getTopRatedProducts
+  getTopRecommendedProducts,
+  incrementJumlahPembeli,
+  addRating
 };
+
