@@ -1,20 +1,24 @@
 
 const products = [
   {
-    id: 1,
-    image: 'https://example.com/image1.jpg',
-    title: 'Mountain Adventure Trip',
-    description: 'A thrilling adventure to the mountain peaks.',
-    rating: 4.9,
-    price: 100
+    'id': 1,
+    'image': 'https://example.com/image1.jpg',
+    'title': 'Mountain Adventure Trip',
+    'description': 'A thrilling adventure to the mountain peaks.',
+    'rating': 4.9,
+    'jumlahRating': 150,
+    'jumlahPembeli': 200,
+    'price': 100
   },
   {
-    id: 2,
-    image: 'https://example.com/image2.jpg',
-    title: 'Forest Exploration Tour',
-    description: 'Explore the lush green forests with expert guides.',
-    rating: 4.8,
-    price: 80
+    'id': 2,
+    'image': 'https://example.com/image2.jpg',
+    'title': 'Forest Exploration Tour',
+    'description': 'Explore the lush green forests with expert guides.',
+    'rating': 4.8,
+    'jumlahRating': 120,
+    'jumlahPembeli': 180,
+    'price': 80
   },
   {
     id: 3,
@@ -22,6 +26,8 @@ const products = [
     title: 'Beach Adventure Tour',
     description: 'Relax on the beach with our exciting tours.',
     rating: 4.7,
+    jumlahRating: 140,
+    jumlahPembeli: 300,
     price: 120
   },
   {
@@ -29,7 +35,9 @@ const products = [
     image: 'https://example.com/image4.jpg',
     title: 'Desert Safari Experience',
     description: 'Embark on a thrilling desert safari with dune bashing.',
-    rating: 4.5,
+    rating: 0,
+    jumlahRating: 0,
+    jumlahPembeli: 0,
     price: 150
   },
   {
