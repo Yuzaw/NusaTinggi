@@ -53,10 +53,10 @@ exports.authenticateToken = (req, res, next) => {
   });
 };
 
-//data profil
+// Get Profile by Username
 exports.getProfile = (req, res) => {
-  const { username, email } = req.user;
-  const user = users.find((user) => user.username === username || user.email === email);
+  const { username } = req.params; // Ambil username dari parameter route
+  const user = users.find((user) => user.username === username);
 
   if (!user) {
     return res.status(404).json({ message: 'User not found' });
