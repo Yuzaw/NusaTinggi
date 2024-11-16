@@ -21,7 +21,10 @@ router.post('/community', communityController.createNote);
 // Products Route
 router.get('/product', productController.getAllProducts);
 router.post('/product/add', productController.addProduct);
-router.get('/product/recommendations', productController.getTopRatedProducts);
+router.get('/product/recommendations', productController.getTopRecommendedProducts);
 router.get('/product/:id', productController.getProductById);
 
+// Products interaksi
+router.post('/product/:id/buy', productController.incrementJumlahPembeli);
+router.post('/product/:id/rate', productController.addRating);
 module.exports = router;
