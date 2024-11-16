@@ -12,7 +12,7 @@ router.get('/homepage', userController.authenticateToken, (req, res) => {
 // Users Route
 router.post('/register', userController.register);
 router.post('/login', userController.login);
-router.get('/profile', userController.authenticateToken, userController.getProfile);
+router.get('/:username', userController.authenticateToken, userController.getProfile);
 
 // Community Routes
 router.get('/community', communityController.getAllNotes);
