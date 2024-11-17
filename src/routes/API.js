@@ -20,7 +20,7 @@ router.get('/community', communityController.getAllNotes);
 router.post('/community', communityController.createNote);
 
 // Products Route
-router.get('/product', productController.getAllProducts);
+router.get('/products', productController.getAllProducts);
 router.post('/product/add', productController.addProduct);
 router.get('/product/recommendations', productController.getTopRecommendedProducts);
 router.get('/product/:id', productController.getProductById);
