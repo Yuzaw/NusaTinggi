@@ -69,3 +69,27 @@ exports.getProfile = (req, res) => {
     age: user.age
   });
 };
+
+exports.changePassword = async (req, res) => {
+  const { username } = req.user; // Ambil username dari token setelah autentikasi
+  const { oldPassword, newPassword } = req.body;
+
+  // Cari user berdasarkan username
+  const user = users.find((user) => user.username === username);
+
+  if (!user) {
+    return res.status(404).json({ message: 'User not found' });
+  }
+
+  // Periksa apakah password lama cocok
+  const isMatch = await bcrypt.compare(oldPassword, user.password);
+  if (!isMatch) {
+    return res.status(400).json({ message: 'Old password is incorrect' });
+  }
+
+  // Hash password baru
+  const hashedPassword = await bcrypt.hash(newPassword, 10);
+  user.password = hashedPassword; // Update password user
+
+  res.status(200).json({ message: 'Password updated successfully' });
+};
