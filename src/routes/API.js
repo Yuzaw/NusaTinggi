@@ -12,7 +12,8 @@ router.get('/homepage', userController.authenticateToken, (req, res) => {
 // Users Route
 router.post('/register', userController.register);
 router.post('/login', userController.login);
-router.get('/:username', userController.authenticateToken, userController.getProfile);
+router.get('/acc/:username', userController.authenticateToken, userController.getProfile);
+router.put('/change-password', userController.authenticateToken, userController.changePassword);
 
 // Community Routes
 router.get('/community', communityController.getAllNotes);
@@ -27,4 +28,5 @@ router.get('/product/:id', productController.getProductById);
 // Products interaksi
 router.post('/product/:id/buy', productController.incrementJumlahPembeli);
 router.post('/product/:id/rate', productController.addRating);
+
 module.exports = router;
