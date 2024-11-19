@@ -1,24 +1,33 @@
-const products = require('../models/product');
+// controllers/productController.js
+const Product = require('../models/product'); // Import the Sequelize model
 
 // Get all products
-const getAllProducts = (req, res) => {
-  res.json(products);
+const getAllProducts = async (req, res) => {
+  try {
+    const products = await Product.findAll();
+    res.json(products);
+  } catch (err) {
+    res.status(500).json({ message: 'Error fetching products', error: err.message });
+  }
 };
 
 // Get a specific product by ID
-const getProductById = (req, res) => {
+const getProductById = async (req, res) => {
   const productId = parseInt(req.params.id);
-  const product = products.find((p) => p.id === productId);
-
-  if (product) {
-    res.json(product);
-  } else {
-    res.status(404).json({ message: 'Product not found' });
+  try {
+    const product = await Product.findByPk(productId);
+    if (product) {
+      res.json(product);
+    } else {
+      res.status(404).json({ message: 'Product not found' });
+    }
+  } catch (err) {
+    res.status(500).json({ message: 'Error fetching product', error: err.message });
   }
 };
 
 // Add a new product
-const addProduct = (req, res) => {
+const addProduct = async (req, res) => {
   const { image, title, description, rating, price } = req.body;
 
   // Simple validation
@@ -26,72 +35,80 @@ const addProduct = (req, res) => {
     return res.status(400).json({ message: 'All fields are required' });
   }
 
-  // Create new product object
-  const newProduct = {
-    id: products.length + 1, // Simple ID generation
-    image,
-    title,
-    description,
-    rating,
-    price
-  };
+  try {
+    const newProduct = await Product.create({
+      image,
+      title,
+      description,
+      rating,
+      price,
+    });
 
-  // Add the new product to the list
-  products.push(newProduct);
-
-  // Respond with the newly added product
-  res.status(201).json(newProduct);
-};
-
-const getTopRecommendedProducts = (req, res) => {
-  // Sort by rating and jumlahPembeli, prioritize high rating, then high jumlahPembeli
-  const recommendedProducts = [...products]
-    .sort((a, b) => {
-      // Sort by rating first, then by jumlahPembeli if ratings are the same
-      if (b.rating === a.rating) {
-        return b.jumlahPembeli - a.jumlahPembeli;
-      }
-      return b.rating - a.rating;
-    })
-    .slice(0, 10); // Get top 10 products
-
-  res.json(recommendedProducts);
-};
-
-
-
-// Function to increment jumlahPembeli (total buyers) for a product
-const incrementJumlahPembeli = (req, res) => {
-  const productId = parseInt(req.params.id);
-  const product = products.find((p) => p.id === productId);
-
-  if (product) {
-    product.jumlahPembeli += 1;
-    res.json({ message: 'Purchase recorded', product });
-  } else {
-    res.status(404).json({ message: 'Product not found' });
+    res.status(201).json(newProduct);
+  } catch (err) {
+    res.status(500).json({ message: 'Error adding product', error: err.message });
   }
 };
 
-// Function to add a rating to a product and update jumlahRating and rating
-const addRating = (req, res) => {
+// Get top recommended products (sorted by rating and jumlahPembeli)
+const getTopRecommendedProducts = async (req, res) => {
+  try {
+    const recommendedProducts = await Product.findAll({
+      order: [
+        ['rating', 'DESC'],
+        ['jumlahPembeli', 'DESC']
+      ],
+      limit: 10,
+    });
+
+    res.json(recommendedProducts);
+  } catch (err) {
+    res.status(500).json({ message: 'Error fetching recommended products', error: err.message });
+  }
+};
+
+// Increment jumlahPembeli for a product
+const incrementJumlahPembeli = async (req, res) => {
+  const productId = parseInt(req.params.id);
+  try {
+    const product = await Product.findByPk(productId);
+    if (product) {
+      product.jumlahPembeli += 1;
+      await product.save(); // Save the updated product
+      res.json({ message: 'Purchase recorded', product });
+    } else {
+      res.status(404).json({ message: 'Product not found' });
+    }
+  } catch (err) {
+    res.status(500).json({ message: 'Error updating purchase count', error: err.message });
+  }
+};
+
+// Add a rating to a product and update rating and jumlahRating
+const addRating = async (req, res) => {
   const productId = parseInt(req.params.id);
   const { newRating } = req.body; // Assume newRating is passed in request body
-  const product = products.find((p) => p.id === productId);
 
-  if (product && newRating >= 1 && newRating <= 5) {
-    // Update jumlahRating and recalculate average rating
-    const totalRatingScore = product.rating * product.jumlahRating + newRating;
-    product.jumlahRating += 1;
-    product.rating = totalRatingScore / product.jumlahRating;
+  if (newRating < 1 || newRating > 5) {
+    return res.status(400).json({ message: 'Invalid rating value' });
+  }
 
-    res.json({ message: 'Rating added', product });
-  } else {
-    res.status(400).json({ message: 'Invalid rating or product not found' });
+  try {
+    const product = await Product.findByPk(productId);
+    if (product) {
+      const totalRatingScore = product.rating * product.jumlahRating + newRating;
+      product.jumlahRating += 1;
+      product.rating = totalRatingScore / product.jumlahRating;
+
+      await product.save(); // Save the updated product
+      res.json({ message: 'Rating added', product });
+    } else {
+      res.status(404).json({ message: 'Product not found' });
+    }
+  } catch (err) {
+    res.status(500).json({ message: 'Error updating rating', error: err.message });
   }
 };
-
-// Other existing functions (getAllProducts, getProductById, addProduct, etc.)
 
 module.exports = {
   getAllProducts,
@@ -99,6 +116,5 @@ module.exports = {
   addProduct,
   getTopRecommendedProducts,
   incrementJumlahPembeli,
-  addRating
+  addRating,
 };
-
