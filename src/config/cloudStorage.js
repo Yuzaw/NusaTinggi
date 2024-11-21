@@ -3,7 +3,7 @@ const path = require('path');
 
 // Inisialisasi Storage dengan kunci JSON
 const storage = new Storage({
-  keyFilename: path.join(__dirname, './nusatinggi-3f514f398fe8.json'),
+  keyFilename: path.join(__dirname, './serviceAccountKey.json'),
   projectId: 'nusatinggi',
 });
 
