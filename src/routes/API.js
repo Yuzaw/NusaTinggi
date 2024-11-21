@@ -29,6 +29,8 @@ router.get('/products', productController.getAllProducts);
 router.post('/product/add', productController.addProduct);
 router.get('/product/recommendations', productController.getTopRecommendedProducts);
 router.get('/product/:id', productController.getProductById);
+router.delete('/product/:id/delete', productController.deleteProduct); // Delete route
+router.put('/product/:id/edit', productController.editProduct); // Edit route
 
 // Product interactions
 router.post('/product/:id/buy', productController.incrementJumlahPembeli);
