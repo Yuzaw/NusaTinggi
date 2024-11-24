@@ -1,9 +1,8 @@
 const { Storage } = require('@google-cloud/storage');
-const path = require('path');
+require('dotenv').config();
 
 // Inisialisasi Storage dengan kunci JSON
 const storage = new Storage({
-  keyFilename: path.join(__dirname, './serviceAccountKey.json'),
   projectId: 'nusatinggi',
 });
 
