@@ -1,7 +1,18 @@
 // routes.js
+// routes.js
 const express = require('express');
 const router = express.Router();
 const userController = require('../controllers/userController');
+const productController = require('../controllers/productController');
+const communityController = require('../controllers/communityController');
+const authenticateToken = require('../middleware/authToken');
+
+// Homepage Route
+router.get('/homepage', authenticateToken, (req, res) => {
+  res.status(200).json({ message: `Welcome to the home page, ${req.user.username}!` });
+});
+
+// Users Route
 const productController = require('../controllers/productController');
 const communityController = require('../controllers/communityController');
 const authenticateToken = require('../middleware/authToken');
@@ -27,13 +38,14 @@ router.post('/community', communityController.createNote);
 // Products Route
 router.get('/products', productController.getAllProducts);
 router.post('/product/add', productController.addProduct);
-router.get('/product/recommendations', productController.getTopRecommendedProducts);
+router.put('/product/:id/edit', productController.editProduct);
+router.delete('/product/:id/delete', productController.deleteProduct);
 router.get('/product/:id', productController.getProductById);
-router.delete('/product/:id/delete', productController.deleteProduct); // Delete route
-router.put('/product/:id/edit', productController.editProduct); // Edit route
 
 // Product interactions
+router.get('/product/recommendations', productController.getTopRecommendedProducts);
 router.post('/product/:id/buy', productController.incrementJumlahPembeli);
 router.post('/product/:id/rate', productController.addRating);
 
 module.exports = router;
+
