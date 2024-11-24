@@ -1,7 +1,18 @@
 // routes.js
+// routes.js
 const express = require('express');
 const router = express.Router();
 const userController = require('../controllers/userController');
+const productController = require('../controllers/productController');
+const communityController = require('../controllers/communityController');
+const authenticateToken = require('../middleware/authToken');
+
+// Homepage Route
+router.get('/homepage', authenticateToken, (req, res) => {
+  res.status(200).json({ message: `Welcome to the home page, ${req.user.username}!` });
+});
+
+// Users Route
 const productController = require('../controllers/productController');
 const communityController = require('../controllers/communityController');
 const authenticateToken = require('../middleware/authToken');
@@ -37,3 +48,4 @@ router.post('/product/:id/buy', productController.incrementJumlahPembeli);
 router.post('/product/:id/rate', productController.addRating);
 
 module.exports = router;
+
