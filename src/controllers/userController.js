@@ -82,7 +82,7 @@ exports.getProfile = async (req, res) => {
     // Ambil user berdasarkan username
     const user = await User.findOne({
       where: { username },
-      attributes: ['username', 'email', 'gender', 'dateOfBirth', 'profilePicture'],
+      attributes: ['id', 'username', 'email', 'gender', 'dateOfBirth', 'profilePicture'],
     });
 
     if (!user) {
