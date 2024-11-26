@@ -1,5 +1,7 @@
 // controllers/productController.js
-const Product = require('../models/product'); // Import the Sequelize model
+const Product = require('../models/products'); // Import the Sequelize model
+const upload = require('../middleware/upload');
+const bucket = require('../config/cloudStorage');
 
 const { v4: uuidv4 } = require('uuid');
 const { v4: isUuid } = require('uuid');
@@ -36,53 +38,133 @@ const getProductById = async (req, res) => {
 };
 
 // Add a new product
-const addProduct = async (req, res) => {
-  const { image, title, description, rating, price } = req.body;
+const addProduct = [
+  upload.single('image'), // Middleware untuk menangani file gambar
+  async (req, res) => {
+    const { title, description, rating, price } = req.body;
 
-  if (!image || !title || !description || !rating || !price) {
-    return res.status(400).json({ message: 'All fields are required' });
-  }
+    // Validasi data body
+    if (!title || !description || !rating || !price) {
+      return res.status(400).json({ message: 'All fields are required' });
+    }
 
-  try {
-    const newProduct = await Product.create({
-      id: uuidv4(), // ID acak
-      image,
-      title,
-      description,
-      rating,
-      price,
-    });
+    try {
+      // Generate ID untuk produk
+      const productId = uuidv4();
+      console.log('Generated Product ID:', productId); // Tambahkan log untuk memeriksa nilai ID
 
-    res.status(201).json(newProduct);
-  } catch (err) {
-    res.status(500).json({ message: 'Error adding product', error: err.message });
-  }
-};
+      let imageUrl = null;
+
+      // Jika file gambar diunggah
+      if (req.file) {
+        const folderName = `products/${productId}/`; // Folder berdasarkan ID produk
+        const fileName = `${Date.now()}-${req.file.originalname}`;
+        const filePath = `${folderName}${fileName}`;
+
+        const file = bucket.file(filePath);
+
+        const stream = file.createWriteStream({
+          resumable: false,
+          contentType: req.file.mimetype,
+          predefinedAcl: 'publicRead', // Memberikan akses publik
+        });
+
+        stream.on('error', (err) => {
+          console.error('Error uploading image:', err);
+          return res.status(500).json({ message: 'Error uploading image' });
+        });
+
+        await new Promise((resolve, reject) => {
+          stream.on('finish', resolve);
+          stream.on('error', reject);
+          stream.end(req.file.buffer);
+        });
+
+        imageUrl = `https://storage.googleapis.com/${bucket.name}/${filePath}`;
+      }
+
+      // Buat produk baru di database
+      const newProduct = await Product.create({
+        id: productId, // ID produk digunakan di folder
+        image: imageUrl, // URL gambar dari Google Cloud Storage
+        title,
+        description,
+        rating,
+        price,
+      });
+
+      res.status(201).json(newProduct);
+    } catch (err) {
+      console.error('Error adding product:', err);
+      res.status(500).json({ message: 'Error adding product', error: err.message });
+    }
+  },
+];
 
 // Edit a product by ID
-const editProduct = async (req, res) => {
-  const productId = parseInt(req.params.id);
-  const { image, title, description, rating, price } = req.body;
+const editProduct = [
+  upload.single('image'), // Middleware untuk menangani file gambar (satu file)
+  async (req, res) => {
+    const productId = req.params.id; // Ambil ID produk dari parameter
+    const { title, description, rating, price } = req.body;
 
-  try {
-    const product = await Product.findByPk(productId);
-    if (product) {
-      // Update the product fields
-      product.image = image || product.image;
+    try {
+      const product = await Product.findByPk(productId); // Cari produk berdasarkan ID
+      if (!product) {
+        return res.status(404).json({ message: 'Product not found' });
+      }
+
+      // Jika ada gambar baru
+      let imageUrl = product.image; // Jika tidak ada gambar baru, gunakan gambar lama
+
+      if (req.file) {
+        // Menghapus gambar lama dari Cloud Storage (jika ada)
+        if (product.image) {
+          const oldFilePath = product.image.replace(`https://storage.googleapis.com/${bucket.name}/`, '');
+          const oldFile = bucket.file(oldFilePath);
+
+          await oldFile.delete(); // Hapus file gambar lama
+        }
+
+        // Upload gambar baru ke Cloud Storage
+        const folderName = `products/${productId}/`; // Gunakan folder yang sama dengan ID produk
+        const fileName = `${Date.now()}-${req.file.originalname}`; // Nama file baru untuk menghindari duplikasi
+        const filePath = `${folderName}${fileName}`; // Path lengkap file
+
+        const file = bucket.file(filePath);
+
+        const stream = file.createWriteStream({
+          resumable: false,
+          contentType: req.file.mimetype,
+          predefinedAcl: 'publicRead', // Berikan akses publik
+        });
+
+        await new Promise((resolve, reject) => {
+          stream.on('finish', resolve);
+          stream.on('error', reject);
+          stream.end(req.file.buffer); // Kirim buffer file ke Cloud Storage
+        });
+
+        // URL gambar baru dari Cloud Storage
+        imageUrl = `https://storage.googleapis.com/${bucket.name}/${filePath}`;
+      }
+
+      // Update data produk di database
       product.title = title || product.title;
       product.description = description || product.description;
       product.rating = rating || product.rating;
       product.price = price || product.price;
+      product.image = imageUrl; // Perbarui URL gambar
 
       await product.save(); // Simpan perubahan
+
       res.json({ message: 'Product updated successfully', product });
-    } else {
-      res.status(404).json({ message: 'Product not found' });
+    } catch (err) {
+      console.error('Error updating product:', err);
+      res.status(500).json({ message: 'Error updating product', error: err.message });
     }
-  } catch (err) {
-    res.status(500).json({ message: 'Error updating product', error: err.message });
   }
-};
+];
 
 // Delete a product by ID
 const deleteProduct = async (req, res) => {
@@ -99,9 +181,20 @@ const deleteProduct = async (req, res) => {
       return res.status(404).json({ message: 'Product not found' });
     }
 
+    // Delete the image from Google Cloud Storage if it exists
+    if (product.image) {
+      const filePath = product.image.replace(`https://storage.googleapis.com/${bucket.name}/`, ''); // Extract the file path
+      const file = bucket.file(filePath); // Get the file reference in Cloud Storage
+
+      await file.delete(); // Delete the file from Cloud Storage
+      console.log('Image deleted from Cloud Storage');
+    }
+
+    // Now delete the product from the database
     await product.destroy();
-    res.json({ message: 'Product deleted successfully' });
+    res.json({ message: 'Product and associated image deleted successfully' });
   } catch (err) {
+    console.error('Error deleting product:', err);
     res.status(500).json({ message: 'Error deleting product', error: err.message });
   }
 };
