@@ -1,3 +1,4 @@
+// models/mytrip.js
 const { DataTypes } = require('sequelize');
 const sequelize = require('../config/database');
 const User = require('./users');
@@ -18,6 +19,15 @@ const MyTrip = sequelize.define('MyTrip', {
   totalPrice: {
     type: DataTypes.FLOAT,
     allowNull: false,
+  },
+  status: {
+    type: DataTypes.ENUM('pending', 'success', 'completed', 'cancelled'),
+    defaultValue: 'pending',
+    allowNull: false,
+  },
+  cancellationReason: {
+    type: DataTypes.STRING,
+    allowNull: true,
   },
 }, {
   timestamps: true,

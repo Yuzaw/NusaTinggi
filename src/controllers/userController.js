@@ -59,9 +59,9 @@ exports.login = async (req, res) => {
       return res.status(401).json({ message: 'Invalid credentials' });
     }
 
-    // Generate JWT token
+    // Generate JWT token dengan ID pengguna
     const accessToken = jwt.sign(
-      { username: user.username, email: user.email },
+      { id: user.id }, // Gunakan id sebagai payload
       SECRET_KEY,
       { expiresIn: '10m' }
     );
@@ -74,14 +74,13 @@ exports.login = async (req, res) => {
   }
 };
 
-// Get Profile by Username
+// Get Profile by ID
 exports.getProfile = async (req, res) => {
-  const { username } = req.params;
+  const { id } = req.user; // Ambil ID dari token
 
   try {
-    // Ambil user berdasarkan username
-    const user = await User.findOne({
-      where: { username },
+    // Ambil user berdasarkan ID
+    const user = await User.findByPk(id, {
       attributes: ['id', 'username', 'email', 'gender', 'dateOfBirth', 'profilePicture'],
     });
 
@@ -96,14 +95,14 @@ exports.getProfile = async (req, res) => {
   }
 };
 
-// Change password
+// Change Password
 exports.changePassword = async (req, res) => {
-  const { username } = req.user;
+  const { id } = req.user; // Ambil ID dari token
   const { oldPassword, newPassword } = req.body;
 
   try {
-    // Cari user berdasarkan username
-    const user = await User.findOne({ where: { username } });
+    // Cari user berdasarkan ID
+    const user = await User.findByPk(id);
 
     if (!user) {
       return res.status(404).json({ message: 'User not found' });
@@ -130,26 +129,25 @@ exports.changePassword = async (req, res) => {
 // Update Profile
 exports.updateProfile = async (req, res) => {
   const { username, gender, dateOfBirth } = req.body;
-  const { username: currentUsername } = req.user; // Current authenticated user
+  const { id } = req.user; // Ambil ID dari token
 
   try {
-    // Cek apakah username yang baru sudah ada
-    if (username && username !== currentUsername) {
+    // Cek apakah username baru sudah ada
+    if (username) {
       const existingUser = await User.findOne({ where: { username } });
-
-      if (existingUser) {
+      if (existingUser && existingUser.id !== id) {
         return res.status(400).json({ message: 'Username is already taken' });
       }
     }
 
-    // Cari user berdasarkan username yang sedang login
-    const user = await User.findOne({ where: { username: currentUsername } });
+    // Cari user berdasarkan ID
+    const user = await User.findByPk(id);
 
     if (!user) {
       return res.status(404).json({ message: 'User not found' });
     }
 
-    // Update data profile
+    // Update data profil
     if (username) user.username = username;
     if (gender) user.gender = gender;
     if (dateOfBirth) user.dateOfBirth = dateOfBirth;
@@ -163,7 +161,7 @@ exports.updateProfile = async (req, res) => {
         username: user.username,
         email: user.email,
         gender: user.gender,
-        dateOfBirth: user.dateOfBirth
+        dateOfBirth: user.dateOfBirth,
       },
     });
   } catch (err) {
@@ -174,18 +172,17 @@ exports.updateProfile = async (req, res) => {
 
 // Upload profile picture
 exports.uploadProfilePicture = [
-  upload.single('profilePicture'), // Middleware untuk menangani file
+  upload.single('profilePicture'),
   async (req, res) => {
     try {
       if (!req.file) {
         return res.status(400).json({ message: 'No file uploaded' });
       }
 
-      // Ambil username dari pengguna yang sedang login
-      const { username } = req.user;
+      const { id } = req.user; // Ambil ID dari token
 
       // Ambil data user dari database
-      const user = await User.findOne({ where: { username } });
+      const user = await User.findByPk(id);
       if (!user) {
         return res.status(404).json({ message: 'User not found' });
       }
@@ -193,29 +190,25 @@ exports.uploadProfilePicture = [
       // Jika pengguna sudah memiliki gambar profil sebelumnya, hapus gambar lama
       if (user.profilePicture) {
         const oldFilePath = user.profilePicture.replace(`https://storage.googleapis.com/${bucket.name}/`, '');
-
-        // Hapus gambar lama dari Google Cloud Storage
         await bucket.file(oldFilePath).delete().catch((err) => {
           console.error('Error deleting old profile picture:', err);
         });
       }
 
       // Nama folder berdasarkan username
-      const folderName = `users/${username}/profile-pictures/`;
+      const folderName = `users/${user.username}/profile-pictures/`;
 
       // Nama file unik untuk menghindari duplikasi
       const fileName = `${Date.now()}-${req.file.originalname}`;
 
       // Gabungkan folder dan nama file untuk path
       const filePath = `${folderName}${fileName}`;
-
       const file = bucket.file(filePath);
 
-      // Stream file dari memori ke Google Cloud Storage
       const stream = file.createWriteStream({
         resumable: false,
         contentType: req.file.mimetype,
-        predefinedAcl: 'publicRead', // Memberikan akses publik
+        predefinedAcl: 'publicRead',
       });
 
       stream.on('error', (err) => {
@@ -224,16 +217,7 @@ exports.uploadProfilePicture = [
       });
 
       stream.on('finish', async () => {
-        // URL gambar di Google Cloud Storage
         const publicUrl = `https://storage.googleapis.com/${bucket.name}/${filePath}`;
-
-        // Update URL gambar di profil pengguna di database
-        const user = await User.findOne({ where: { username } });
-        if (!user) {
-          return res.status(404).json({ message: 'User not found' });
-        }
-
-        // Simpan URL gambar profil ke database
         user.profilePicture = publicUrl;
         await user.save();
 
@@ -253,18 +237,18 @@ exports.uploadProfilePicture = [
 
 // Delete Account
 exports.deleteAccount = async (req, res) => {
-  const { username } = req.user; // Ambil username dari pengguna yang sedang login
+  const { id } = req.user; // Ambil ID dari token
 
   try {
-    // Cari user berdasarkan username
-    const user = await User.findOne({ where: { username } });
+    // Cari user berdasarkan ID
+    const user = await User.findByPk(id);
 
     if (!user) {
       return res.status(404).json({ message: 'User not found' });
     }
 
     // Hapus semua file dalam folder pengguna di Google Cloud Storage
-    const folderName = `users/${username}/profile-pictures/`;
+    const folderName = `users/${id}/profile-pictures/`;
     const [files] = await bucket.getFiles({ prefix: folderName });
 
     if (files.length > 0) {
