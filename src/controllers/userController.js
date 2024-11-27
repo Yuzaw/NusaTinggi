@@ -179,15 +179,15 @@ exports.uploadProfilePicture = [
         return res.status(400).json({ message: 'No file uploaded' });
       }
 
-      const { id } = req.user; // Ambil ID dari token
+      const { id } = req.user; // Get user ID from the token
 
-      // Ambil data user dari database
+      // Retrieve user data from the database
       const user = await User.findByPk(id);
       if (!user) {
         return res.status(404).json({ message: 'User not found' });
       }
 
-      // Jika pengguna sudah memiliki gambar profil sebelumnya, hapus gambar lama
+      // If the user already has a profile picture, delete the old one
       if (user.profilePicture) {
         const oldFilePath = user.profilePicture.replace(`https://storage.googleapis.com/${bucket.name}/`, '');
         await bucket.file(oldFilePath).delete().catch((err) => {
@@ -195,13 +195,13 @@ exports.uploadProfilePicture = [
         });
       }
 
-      // Nama folder berdasarkan username
-      const folderName = `users/${user.username}/profile-pictures/`;
+      // New folder structure with userId
+      const folderName = `users/userId-${id}/profile-picture/`;
 
-      // Nama file unik untuk menghindari duplikasi
+      // Unique file name to avoid duplication
       const fileName = `${Date.now()}-${req.file.originalname}`;
 
-      // Gabungkan folder dan nama file untuk path
+      // Combine folder and file name to create the path
       const filePath = `${folderName}${fileName}`;
       const file = bucket.file(filePath);
 
@@ -266,5 +266,32 @@ exports.deleteAccount = async (req, res) => {
   } catch (err) {
     console.error(err);
     res.status(500).json({ message: 'Error deleting account' });
+  }
+};
+
+// Update user status to 'business'
+exports.upgradeToBusiness = async (req, res) => {
+  const { id } = req.user; // Ambil ID pengguna dari token
+
+  try {
+    // Cari pengguna berdasarkan ID
+    const user = await User.findByPk(id);
+    if (!user) {
+      return res.status(404).json({ message: 'User not found' });
+    }
+
+    // Jika pengguna sudah memiliki status 'business', beri respon
+    if (user.status === 'business') {
+      return res.status(400).json({ message: 'User is already a business' });
+    }
+
+    // Ubah status pengguna menjadi 'business'
+    user.status = 'business';
+    await user.save();
+
+    res.status(200).json({ message: 'User status updated to business', user });
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ message: 'Error upgrading user status', error: error.message });
   }
 };
