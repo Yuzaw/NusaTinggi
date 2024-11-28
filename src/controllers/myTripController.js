@@ -28,19 +28,24 @@ const getMyTrips = async (req, res) => {
 const buyProduct = async (req, res) => {
   const { productId } = req.params;
   const { quantity } = req.body;
-  const { id } = req.user;  // Ambil id dari token (req.user)
+  const { id: buyerId } = req.user; // ID pembeli
 
   try {
+    // Cari produk berdasarkan productId
     const product = await Product.findByPk(productId);
+
     if (!product) {
       return res.status(404).json({ message: 'Product not found' });
     }
 
+    // Hitung total harga berdasarkan jumlah dan harga produk
     const totalPrice = product.price * quantity;
 
+    // Buat entri MyTrip dengan menyertakan pemilik produk (userId pemilik bisnis)
     const trip = await MyTrip.create({
       productId,
-      userId: id,
+      userId: buyerId, // ID pembeli
+      businessOwnerId: product.userId, // ID pemilik bisnis (dari tabel produk)
       quantity,
       totalPrice,
       status: 'pending',
@@ -100,8 +105,6 @@ const cancelOrder = async (req, res) => {
   }
 };
 
-
-
 // Menyelesaikan trip
 const completeOrder = async (req, res) => {
   const { myTripId } = req.params;
@@ -135,7 +138,6 @@ const completeOrder = async (req, res) => {
     res.status(500).json({ message: 'Failed to complete the trip', error });
   }
 };
-
 
 module.exports = {
   buyProduct,

@@ -21,7 +21,7 @@ const MyTrip = sequelize.define('MyTrip', {
     allowNull: false,
   },
   status: {
-    type: DataTypes.ENUM('pending', 'success', 'completed', 'cancelled'),
+    type: DataTypes.ENUM('pending', 'accepted', 'completed', 'cancelled'),
     defaultValue: 'pending',
     allowNull: false,
   },
@@ -29,13 +29,20 @@ const MyTrip = sequelize.define('MyTrip', {
     type: DataTypes.STRING,
     allowNull: true,
   },
+  businessOwnerId: {
+    type: DataTypes.UUID,
+    allowNull: false,
+  },
 }, {
   timestamps: true,
 });
 
 // Relasi antar model
-User.hasMany(MyTrip, { foreignKey: 'userId' });
-MyTrip.belongsTo(User, { foreignKey: 'userId' });
+User.hasMany(MyTrip, { foreignKey: 'userId', as: 'Buyer' }); // Pembeli
+MyTrip.belongsTo(User, { foreignKey: 'userId', as: 'Buyer' });
+
+User.hasMany(MyTrip, { foreignKey: 'businessOwnerId', as: 'BusinessOwner' }); // Pemilik bisnis
+MyTrip.belongsTo(User, { foreignKey: 'businessOwnerId', as: 'BusinessOwner' });
 
 Product.hasMany(MyTrip, { foreignKey: 'productId' });
 MyTrip.belongsTo(Product, { foreignKey: 'productId' });

@@ -6,6 +6,7 @@ const productController = require('../controllers/productController');
 const communityController = require('../controllers/communityController');
 const myTripController = require('../controllers/myTripController');
 const businessController = require('../controllers/businessController');
+const orderController = require('../controllers/OrderController');
 const authenticateToken = require('../middleware/authToken');
 const authBusiness = require('../middleware/authBusiness');
 
@@ -36,6 +37,11 @@ router.get('/user/myBusiness/:productId', authenticateToken, authBusiness, busin
 router.post('/user/myBusiness/add', authenticateToken, authBusiness, businessController.addProduct);
 router.put('/user/myBusiness/:productId/edit', authenticateToken, authBusiness, businessController.editProduct);
 router.delete('/user/myBusiness/:productId/delete', authenticateToken, authBusiness, businessController.deleteProduct);
+
+// Orders Routes
+router.get('/user/myOrders', authenticateToken, authBusiness, orderController.getMyOrders);
+router.patch('/user/myOrders/:orderId/accept', authenticateToken, authBusiness, orderController.acceptOrder);
+router.patch('/user/myOrders/:orderId/decline', authenticateToken, authBusiness, orderController.declineOrder);
 
 // Community Routes
 router.get('/community', communityController.getAllNotes);
