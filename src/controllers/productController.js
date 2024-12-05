@@ -49,53 +49,8 @@ const getTopRecommendedProducts = async (req, res) => {
   }
 };
 
-// Increment jumlahPembeli for a product
-const incrementJumlahPembeli = async (req, res) => {
-  const productId = parseInt(req.params.id);
-  try {
-    const product = await Product.findByPk(productId);
-    if (product) {
-      product.jumlahPembeli += 1;
-      await product.save(); // Save the updated product
-      res.json({ message: 'Purchase recorded', product });
-    } else {
-      res.status(404).json({ message: 'Product not found' });
-    }
-  } catch (err) {
-    res.status(500).json({ message: 'Error updating purchase count', error: err.message });
-  }
-};
-
-// Add a rating to a product and update rating and jumlahRating
-const addRating = async (req, res) => {
-  const productId = parseInt(req.params.id);
-  const { newRating } = req.body; // Assume newRating is passed in request body
-
-  if (newRating < 1 || newRating > 5) {
-    return res.status(400).json({ message: 'Invalid rating value' });
-  }
-
-  try {
-    const product = await Product.findByPk(productId);
-    if (product) {
-      const totalRatingScore = product.rating * product.jumlahRating + newRating;
-      product.jumlahRating += 1;
-      product.rating = totalRatingScore / product.jumlahRating;
-
-      await product.save(); // Save the updated product
-      res.json({ message: 'Rating added', product });
-    } else {
-      res.status(404).json({ message: 'Product not found' });
-    }
-  } catch (err) {
-    res.status(500).json({ message: 'Error updating rating', error: err.message });
-  }
-};
-
 module.exports = {
   getAllProducts,
   getProductById,
   getTopRecommendedProducts,
-  incrementJumlahPembeli,
-  addRating,
 };

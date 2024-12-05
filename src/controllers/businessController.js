@@ -56,11 +56,11 @@ const getMyBusinessById = [
 const addProduct = [
   upload.single('image'), // Middleware for handling file upload
   async (req, res) => {
-    const { title, description, rating, price } = req.body;
+    const { title, description, price } = req.body;
     const { id: userId } = req.user; // Get the userId from the token
 
     // Validate body data
-    if (!title || !description || !rating || !price) {
+    if (!title || !description || !price) {
       return res.status(400).json({ message: 'All fields are required' });
     }
 
@@ -102,7 +102,6 @@ const addProduct = [
         image: imageUrl,
         title,
         description,
-        rating,
         price,
         userId, // Store userId to associate the product with the user
       });
@@ -113,6 +112,7 @@ const addProduct = [
     }
   },
 ];
+
 
 // Edit a product (only for business users)
 const editProduct = [

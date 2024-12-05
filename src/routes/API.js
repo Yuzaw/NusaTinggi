@@ -1,29 +1,25 @@
-// routes.js
 const express = require('express');
 const router = express.Router();
 const userController = require('../controllers/userController');
 const productController = require('../controllers/productController');
-const communityController = require('../controllers/communityController');
 const myTripController = require('../controllers/myTripController');
 const businessController = require('../controllers/businessController');
 const orderController = require('../controllers/OrderController');
 const authenticateToken = require('../middleware/authToken');
 const authBusiness = require('../middleware/authBusiness');
 
-// Homepage Route
-router.get('/homepage', authenticateToken, (req, res) => {
-  res.status(200).json({ message: `Welcome to the home page, ${req.user.username}!` });
-});
-
-// Users Routes
+// Auth Routes
 router.post('/register', userController.register);
 router.post('/login', userController.login);
+router.post('/logout', userController.logout);
+
+// Users Routes
 router.get('/user/profile', authenticateToken, userController.getProfile);
 router.put('/user/change-password', authenticateToken, userController.changePassword);
 router.put('/user/update-profile', authenticateToken, userController.updateProfile);
 router.put('/user/profile-picture', authenticateToken, userController.uploadProfilePicture);
-router.delete('/user/delete-account', authenticateToken, userController.deleteAccount);
 router.put('/user/upgrade', authenticateToken, userController.upgradeToBusiness);
+router.delete('/user/delete-account', authenticateToken, userController.deleteAccount);
 
 // myTrip Routes
 router.get('/user/mytrip', authenticateToken, myTripController.getMyTrips);
@@ -43,17 +39,9 @@ router.get('/user/myOrders', authenticateToken, authBusiness, orderController.ge
 router.patch('/user/myOrders/:orderId/accept', authenticateToken, authBusiness, orderController.acceptOrder);
 router.patch('/user/myOrders/:orderId/decline', authenticateToken, authBusiness, orderController.declineOrder);
 
-// Community Routes
-router.get('/community', communityController.getAllNotes);
-router.post('/community', communityController.createNote);
-
 // Products Route
-router.get('/products', productController.getAllProducts);
-router.get('/products/:id', productController.getProductById);
-
-// Product interactions
-router.get('/products/recommendations', productController.getTopRecommendedProducts);
-router.post('/products/:id/buy', productController.incrementJumlahPembeli);
-router.post('/products/:id/rate', productController.addRating);
+router.get('/products', authenticateToken, productController.getAllProducts);
+router.get('/products/:id', authenticateToken, productController.getProductById);
+router.get('/products/recommendations', authenticateToken, productController.getTopRecommendedProducts);
 
 module.exports = router;

@@ -108,30 +108,53 @@ const cancelOrder = async (req, res) => {
 // Menyelesaikan trip
 const completeOrder = async (req, res) => {
   const { myTripId } = req.params;
-  const { id } = req.user;  // Ambil id dari token (req.user)
+  const { id } = req.user; // Ambil id dari token (req.user)
+  const { rating } = req.body; // Rating dari pembeli
 
   try {
-    // Find the MyTrip entry by myTripId and userId
+    // Cari entri MyTrip berdasarkan myTripId dan userId
     const trip = await MyTrip.findOne({
       where: { id: myTripId, userId: id },
+      include: [{ model: Product }],
     });
 
     if (!trip) {
       return res.status(404).json({ message: 'Trip not found' });
     }
 
-    // If the trip is already completed, return a message
+    // Jika trip sudah selesai, kirim pesan
     if (trip.status === 'completed') {
       return res.status(400).json({ message: 'Trip is already completed' });
     }
 
-    // Set the trip status to 'completed'
+    // Validasi rating
+    if (rating !== undefined && (rating < 1 || rating > 5)) {
+      return res.status(400).json({ message: 'Rating must be between 1 and 5' });
+    }
+
+    // Tambahkan jumlah pembeli pada produk
+    const product = trip.Product;
+    if (product) {
+      product.jumlahPembeli += trip.quantity;
+
+      // Jika rating diberikan, perbarui rating produk
+      if (rating !== undefined) {
+        const totalRating = product.rating * product.jumlahRating + rating;
+        product.jumlahRating += 1;
+        product.rating = totalRating / product.jumlahRating;
+      }
+
+      await product.save();
+    }
+
+    // Tandai trip sebagai selesai
     trip.status = 'completed';
     await trip.save();
 
     res.status(200).json({
       message: 'Trip completed successfully',
       trip,
+      product,
     });
   } catch (error) {
     console.error(error);

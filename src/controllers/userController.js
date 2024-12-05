@@ -8,8 +8,20 @@ const bucket = require('../config/cloudStorage');
 const SECRET_KEY = process.env.SECRET_KEY;
 
 // Register
-exports.register = async (req, res) => {
+const register = async (req, res) => {
   const { username, email, password, gender, dateOfBirth } = req.body;
+
+  // Validasi username dan email (tidak boleh ada spasi atau karakter lain selain . dan _)
+  const usernameRegex = /^[a-zA-Z0-9._]+$/;
+  const emailRegex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
+
+  if (!usernameRegex.test(username)) {
+    return res.status(400).json({ message: 'Username can only contain letters, numbers, ".", and "_" (no spaces or special characters allowed)' });
+  }
+
+  if (!emailRegex.test(email)) {
+    return res.status(400).json({ message: 'Invalid email format' });
+  }
 
   try {
     // Periksa apakah user sudah ada
@@ -35,7 +47,7 @@ exports.register = async (req, res) => {
 };
 
 // Login
-exports.login = async (req, res) => {
+const login = async (req, res) => {
   const { usernameOrEmail, password } = req.body;
 
   try {
@@ -63,7 +75,7 @@ exports.login = async (req, res) => {
     const accessToken = jwt.sign(
       { id: user.id }, // Gunakan id sebagai payload
       SECRET_KEY,
-      { expiresIn: '10m' }
+      { expiresIn: '30d' }
     );
 
     res.cookie('token', accessToken, { httpOnly: true, secure: true });
@@ -74,8 +86,21 @@ exports.login = async (req, res) => {
   }
 };
 
+// Logout
+const logout = (req, res) => {
+  try {
+    // Hapus token yang ada di cookies
+    res.clearCookie('token', { httpOnly: true, secure: true }); // Pastikan untuk menyesuaikan pengaturan cookie
+
+    res.status(200).json({ message: 'Logout successful' });
+  } catch (err) {
+    console.error(err);
+    res.status(500).json({ message: 'Error logging out' });
+  }
+};
+
 // Get Profile by ID
-exports.getProfile = async (req, res) => {
+const getProfile = async (req, res) => {
   const { id } = req.user; // Ambil ID dari token
 
   try {
@@ -96,7 +121,7 @@ exports.getProfile = async (req, res) => {
 };
 
 // Change Password
-exports.changePassword = async (req, res) => {
+const changePassword = async (req, res) => {
   const { id } = req.user; // Ambil ID dari token
   const { oldPassword, newPassword } = req.body;
 
@@ -127,7 +152,7 @@ exports.changePassword = async (req, res) => {
 };
 
 // Update Profile
-exports.updateProfile = async (req, res) => {
+const updateProfile = async (req, res) => {
   const { username, gender, dateOfBirth } = req.body;
   const { id } = req.user; // Ambil ID dari token
 
@@ -171,7 +196,7 @@ exports.updateProfile = async (req, res) => {
 };
 
 // Upload profile picture
-exports.uploadProfilePicture = [
+const uploadProfilePicture = [
   upload.single('profilePicture'),
   async (req, res) => {
     try {
@@ -235,8 +260,35 @@ exports.uploadProfilePicture = [
   },
 ];
 
+// Update user status to 'business'
+const upgradeToBusiness = async (req, res) => {
+  const { id } = req.user; // Ambil ID pengguna dari token
+
+  try {
+    // Cari pengguna berdasarkan ID
+    const user = await User.findByPk(id);
+    if (!user) {
+      return res.status(404).json({ message: 'User not found' });
+    }
+
+    // Jika pengguna sudah memiliki status 'business', beri respon
+    if (user.status === 'business') {
+      return res.status(400).json({ message: 'User is already a business' });
+    }
+
+    // Ubah status pengguna menjadi 'business'
+    user.status = 'business';
+    await user.save();
+
+    res.status(200).json({ message: 'User status updated to business', user });
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ message: 'Error upgrading user status', error: error.message });
+  }
+};
+
 // Delete Account
-exports.deleteAccount = async (req, res) => {
+const deleteAccount = async (req, res) => {
   const { id } = req.user; // Ambil ID dari token
 
   try {
@@ -269,29 +321,14 @@ exports.deleteAccount = async (req, res) => {
   }
 };
 
-// Update user status to 'business'
-exports.upgradeToBusiness = async (req, res) => {
-  const { id } = req.user; // Ambil ID pengguna dari token
-
-  try {
-    // Cari pengguna berdasarkan ID
-    const user = await User.findByPk(id);
-    if (!user) {
-      return res.status(404).json({ message: 'User not found' });
-    }
-
-    // Jika pengguna sudah memiliki status 'business', beri respon
-    if (user.status === 'business') {
-      return res.status(400).json({ message: 'User is already a business' });
-    }
-
-    // Ubah status pengguna menjadi 'business'
-    user.status = 'business';
-    await user.save();
-
-    res.status(200).json({ message: 'User status updated to business', user });
-  } catch (error) {
-    console.error(error);
-    res.status(500).json({ message: 'Error upgrading user status', error: error.message });
-  }
+module.exports = {
+  register,
+  login,
+  logout,
+  getProfile,
+  changePassword,
+  updateProfile,
+  uploadProfilePicture,
+  upgradeToBusiness,
+  deleteAccount
 };
