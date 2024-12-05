@@ -17,14 +17,4 @@ handlers:
     script: auto
 
 env_variables:
-  PORT: 3000
   NODE_ENV: production
-  SECRET_KEY: supersecretkey
-  DB_NAME: nusatinggi_db
-  DB_USER: root
-  DB_PASSWORD: nusatinggi24
-  DB_HOST: 34.101.47.182
-  GOOGLE_APPLICATION_CREDENTIALS: serviceAccountKey.json
-
-beta_settings:
-  cloud_sql_instances: nusatinggi:asia-southeast2:nusatinggi-sql

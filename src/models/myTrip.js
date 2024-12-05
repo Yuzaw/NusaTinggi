@@ -1,3 +1,4 @@
+// models/mytrip.js
 const { DataTypes } = require('sequelize');
 const sequelize = require('../config/database');
 const User = require('./users');
@@ -19,13 +20,29 @@ const MyTrip = sequelize.define('MyTrip', {
     type: DataTypes.FLOAT,
     allowNull: false,
   },
+  status: {
+    type: DataTypes.ENUM('pending', 'accepted', 'completed', 'cancelled'),
+    defaultValue: 'pending',
+    allowNull: false,
+  },
+  cancellationReason: {
+    type: DataTypes.STRING,
+    allowNull: true,
+  },
+  businessOwnerId: {
+    type: DataTypes.UUID,
+    allowNull: false,
+  },
 }, {
   timestamps: true,
 });
 
 // Relasi antar model
-User.hasMany(MyTrip, { foreignKey: 'userId' });
-MyTrip.belongsTo(User, { foreignKey: 'userId' });
+User.hasMany(MyTrip, { foreignKey: 'userId', as: 'Buyer' }); // Pembeli
+MyTrip.belongsTo(User, { foreignKey: 'userId', as: 'Buyer' });
+
+User.hasMany(MyTrip, { foreignKey: 'businessOwnerId', as: 'BusinessOwner' }); // Pemilik bisnis
+MyTrip.belongsTo(User, { foreignKey: 'businessOwnerId', as: 'BusinessOwner' });
 
 Product.hasMany(MyTrip, { foreignKey: 'productId' });
 MyTrip.belongsTo(Product, { foreignKey: 'productId' });

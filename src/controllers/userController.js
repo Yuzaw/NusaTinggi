@@ -8,8 +8,20 @@ const bucket = require('../config/cloudStorage');
 const SECRET_KEY = process.env.SECRET_KEY;
 
 // Register
-exports.register = async (req, res) => {
+const register = async (req, res) => {
   const { username, email, password, gender, dateOfBirth } = req.body;
+
+  // Validasi username dan email (tidak boleh ada spasi atau karakter lain selain . dan _)
+  const usernameRegex = /^[a-zA-Z0-9._]+$/;
+  const emailRegex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
+
+  if (!usernameRegex.test(username)) {
+    return res.status(400).json({ message: 'Username can only contain letters, numbers, ".", and "_" (no spaces or special characters allowed)' });
+  }
+
+  if (!emailRegex.test(email)) {
+    return res.status(400).json({ message: 'Invalid email format' });
+  }
 
   try {
     // Periksa apakah user sudah ada
@@ -35,7 +47,7 @@ exports.register = async (req, res) => {
 };
 
 // Login
-exports.login = async (req, res) => {
+const login = async (req, res) => {
   const { usernameOrEmail, password } = req.body;
 
   try {
@@ -59,11 +71,11 @@ exports.login = async (req, res) => {
       return res.status(401).json({ message: 'Invalid credentials' });
     }
 
-    // Generate JWT token
+    // Generate JWT token dengan ID pengguna
     const accessToken = jwt.sign(
-      { username: user.username, email: user.email },
+      { id: user.id }, // Gunakan id sebagai payload
       SECRET_KEY,
-      { expiresIn: '10m' }
+      { expiresIn: '30d' }
     );
 
     res.cookie('token', accessToken, { httpOnly: true, secure: true });
@@ -74,14 +86,26 @@ exports.login = async (req, res) => {
   }
 };
 
-// Get Profile by Username
-exports.getProfile = async (req, res) => {
-  const { username } = req.params;
+// Logout
+const logout = (req, res) => {
+  try {
+    // Hapus token yang ada di cookies
+    res.clearCookie('token', { httpOnly: true, secure: true }); // Pastikan untuk menyesuaikan pengaturan cookie
+
+    res.status(200).json({ message: 'Logout successful' });
+  } catch (err) {
+    console.error(err);
+    res.status(500).json({ message: 'Error logging out' });
+  }
+};
+
+// Get Profile by ID
+const getProfile = async (req, res) => {
+  const { id } = req.user; // Ambil ID dari token
 
   try {
-    // Ambil user berdasarkan username
-    const user = await User.findOne({
-      where: { username },
+    // Ambil user berdasarkan ID
+    const user = await User.findByPk(id, {
       attributes: ['id', 'username', 'email', 'gender', 'dateOfBirth', 'profilePicture'],
     });
 
@@ -96,14 +120,14 @@ exports.getProfile = async (req, res) => {
   }
 };
 
-// Change password
-exports.changePassword = async (req, res) => {
-  const { username } = req.user;
+// Change Password
+const changePassword = async (req, res) => {
+  const { id } = req.user; // Ambil ID dari token
   const { oldPassword, newPassword } = req.body;
 
   try {
-    // Cari user berdasarkan username
-    const user = await User.findOne({ where: { username } });
+    // Cari user berdasarkan ID
+    const user = await User.findByPk(id);
 
     if (!user) {
       return res.status(404).json({ message: 'User not found' });
@@ -128,28 +152,27 @@ exports.changePassword = async (req, res) => {
 };
 
 // Update Profile
-exports.updateProfile = async (req, res) => {
+const updateProfile = async (req, res) => {
   const { username, gender, dateOfBirth } = req.body;
-  const { username: currentUsername } = req.user; // Current authenticated user
+  const { id } = req.user; // Ambil ID dari token
 
   try {
-    // Cek apakah username yang baru sudah ada
-    if (username && username !== currentUsername) {
+    // Cek apakah username baru sudah ada
+    if (username) {
       const existingUser = await User.findOne({ where: { username } });
-
-      if (existingUser) {
+      if (existingUser && existingUser.id !== id) {
         return res.status(400).json({ message: 'Username is already taken' });
       }
     }
 
-    // Cari user berdasarkan username yang sedang login
-    const user = await User.findOne({ where: { username: currentUsername } });
+    // Cari user berdasarkan ID
+    const user = await User.findByPk(id);
 
     if (!user) {
       return res.status(404).json({ message: 'User not found' });
     }
 
-    // Update data profile
+    // Update data profil
     if (username) user.username = username;
     if (gender) user.gender = gender;
     if (dateOfBirth) user.dateOfBirth = dateOfBirth;
@@ -163,7 +186,7 @@ exports.updateProfile = async (req, res) => {
         username: user.username,
         email: user.email,
         gender: user.gender,
-        dateOfBirth: user.dateOfBirth
+        dateOfBirth: user.dateOfBirth,
       },
     });
   } catch (err) {
@@ -173,49 +196,44 @@ exports.updateProfile = async (req, res) => {
 };
 
 // Upload profile picture
-exports.uploadProfilePicture = [
-  upload.single('profilePicture'), // Middleware untuk menangani file
+const uploadProfilePicture = [
+  upload.single('profilePicture'),
   async (req, res) => {
     try {
       if (!req.file) {
         return res.status(400).json({ message: 'No file uploaded' });
       }
 
-      // Ambil username dari pengguna yang sedang login
-      const { username } = req.user;
+      const { id } = req.user; // Get user ID from the token
 
-      // Ambil data user dari database
-      const user = await User.findOne({ where: { username } });
+      // Retrieve user data from the database
+      const user = await User.findByPk(id);
       if (!user) {
         return res.status(404).json({ message: 'User not found' });
       }
 
-      // Jika pengguna sudah memiliki gambar profil sebelumnya, hapus gambar lama
+      // If the user already has a profile picture, delete the old one
       if (user.profilePicture) {
         const oldFilePath = user.profilePicture.replace(`https://storage.googleapis.com/${bucket.name}/`, '');
-
-        // Hapus gambar lama dari Google Cloud Storage
         await bucket.file(oldFilePath).delete().catch((err) => {
           console.error('Error deleting old profile picture:', err);
         });
       }
 
-      // Nama folder berdasarkan username
-      const folderName = `users/${username}/profile-pictures/`;
+      // New folder structure with userId
+      const folderName = `users/userId-${id}/profile-picture/`;
 
-      // Nama file unik untuk menghindari duplikasi
+      // Unique file name to avoid duplication
       const fileName = `${Date.now()}-${req.file.originalname}`;
 
-      // Gabungkan folder dan nama file untuk path
+      // Combine folder and file name to create the path
       const filePath = `${folderName}${fileName}`;
-
       const file = bucket.file(filePath);
 
-      // Stream file dari memori ke Google Cloud Storage
       const stream = file.createWriteStream({
         resumable: false,
         contentType: req.file.mimetype,
-        predefinedAcl: 'publicRead', // Memberikan akses publik
+        predefinedAcl: 'publicRead',
       });
 
       stream.on('error', (err) => {
@@ -224,16 +242,7 @@ exports.uploadProfilePicture = [
       });
 
       stream.on('finish', async () => {
-        // URL gambar di Google Cloud Storage
         const publicUrl = `https://storage.googleapis.com/${bucket.name}/${filePath}`;
-
-        // Update URL gambar di profil pengguna di database
-        const user = await User.findOne({ where: { username } });
-        if (!user) {
-          return res.status(404).json({ message: 'User not found' });
-        }
-
-        // Simpan URL gambar profil ke database
         user.profilePicture = publicUrl;
         await user.save();
 
@@ -251,20 +260,47 @@ exports.uploadProfilePicture = [
   },
 ];
 
-// Delete Account
-exports.deleteAccount = async (req, res) => {
-  const { username } = req.user; // Ambil username dari pengguna yang sedang login
+// Update user status to 'business'
+const upgradeToBusiness = async (req, res) => {
+  const { id } = req.user; // Ambil ID pengguna dari token
 
   try {
-    // Cari user berdasarkan username
-    const user = await User.findOne({ where: { username } });
+    // Cari pengguna berdasarkan ID
+    const user = await User.findByPk(id);
+    if (!user) {
+      return res.status(404).json({ message: 'User not found' });
+    }
+
+    // Jika pengguna sudah memiliki status 'business', beri respon
+    if (user.status === 'business') {
+      return res.status(400).json({ message: 'User is already a business' });
+    }
+
+    // Ubah status pengguna menjadi 'business'
+    user.status = 'business';
+    await user.save();
+
+    res.status(200).json({ message: 'User status updated to business', user });
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ message: 'Error upgrading user status', error: error.message });
+  }
+};
+
+// Delete Account
+const deleteAccount = async (req, res) => {
+  const { id } = req.user; // Ambil ID dari token
+
+  try {
+    // Cari user berdasarkan ID
+    const user = await User.findByPk(id);
 
     if (!user) {
       return res.status(404).json({ message: 'User not found' });
     }
 
     // Hapus semua file dalam folder pengguna di Google Cloud Storage
-    const folderName = `users/${username}/profile-pictures/`;
+    const folderName = `users/${id}/profile-pictures/`;
     const [files] = await bucket.getFiles({ prefix: folderName });
 
     if (files.length > 0) {
@@ -283,4 +319,16 @@ exports.deleteAccount = async (req, res) => {
     console.error(err);
     res.status(500).json({ message: 'Error deleting account' });
   }
+};
+
+module.exports = {
+  register,
+  login,
+  logout,
+  getProfile,
+  changePassword,
+  updateProfile,
+  uploadProfilePicture,
+  upgradeToBusiness,
+  deleteAccount
 };
