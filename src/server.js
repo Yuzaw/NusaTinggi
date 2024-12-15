@@ -12,6 +12,10 @@ app.use(express.json());
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
+app.get('/', (req, res) => {
+  res.send('Server connected');
+});
+
 app.use('/API', API);
 
 // Panggil sinkronisasi database

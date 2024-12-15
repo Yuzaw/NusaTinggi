@@ -5,6 +5,7 @@ const productController = require('../controllers/productController');
 const myTripController = require('../controllers/myTripController');
 const businessController = require('../controllers/businessController');
 const orderController = require('../controllers/OrderController');
+const chatbotController = require('../controllers/chatbotController');
 const authenticateToken = require('../middleware/authToken');
 const authBusiness = require('../middleware/authBusiness');
 
@@ -43,5 +44,9 @@ router.patch('/user/myOrders/:orderId/decline', authenticateToken, authBusiness,
 router.get('/products', authenticateToken, productController.getAllProducts);
 router.get('/products/:id', authenticateToken, productController.getProductById);
 router.get('/products/recommendations', authenticateToken, productController.getTopRecommendedProducts);
+
+// Chatbot Routes
+router.put('/edit-mountain', authenticateToken, chatbotController.editMountain);
+router.post('/chat', authenticateToken, chatbotController.predictChatbot);
 
 module.exports = router;
