@@ -1,0 +1,524 @@
+[
+  {
+    "intent": "Peralatan Wajib",
+    "patterns": [
+      "Apa saja peralatan yang wajib dibawa saat mendaki gunung?",
+      "Barang apa saja yang harus ada di tas pendakian?",
+      "Apa saja perlengkapan yang tidak boleh terlupakan saat hiking?",
+      "Peralatan apa yang perlu dibawa saat mendaki gunung?",
+      "Apa barang yang harus dibawa untuk pendakian gunung?",
+      "Apa saja peralatan penting yang harus dibawa saat hiking di gunung?",
+      "Apa saja barang yang wajib dibawa di tas saat naik gunung?",
+      "Apa saja perlengkapan yang diperlukan untuk mendaki gunung dengan aman?",
+      "Apa barang utama yang harus dibawa saat pendakian gunung?",
+      "Perlengkapan apa saja yang wajib ada dalam tas pendakian gunung?"
+    ],
+    "response": "Barang wajib yang perlu dibawa saat hiking meliputi navigasi seperti peta fisik, kompas, atau GPS untuk orientasi, pakaian antiair dan berlapis untuk menghadapi cuaca tak terduga, serta sepatu hiking yang tahan air dan nyaman untuk menjaga kestabilan; perlengkapan tidur seperti tenda ringan, sleeping bag, dan matras untuk kenyamanan jika bermalam diperlukan; alat masak portabel untuk perjalanan panjang, trash bag untuk kebersihan lingkungan, serta kotak P3K yang mencakup perban, plester, antiseptik, obat pribadi, dan pisau multifungsi untuk kebutuhan darurat; senter atau headlamp dengan baterai awet untuk penerangan malam hari, power bank untuk mengisi ulang perangkat elektronik, trekking pole untuk keseimbangan, dan barang tambahan seperti pakaian tebal saat musim dingin atau alat filter air untuk memastikan ketersediaan air bersih; simpan barang berat di bagian tengah carrier untuk menjaga keseimbangan dan pastikan barang penting seperti peta dan P3K mudah diakses."
+    
+  },
+  {
+    "intent": "Kebutuhan",
+    "patterns": [
+      "Apa saja peralatan yang wajib dibawa saat mendaki gunung?",
+      "Barang apa saja yang harus ada di tas pendakian?",
+      "Apa saja perlengkapan yang tidak boleh terlupakan saat hiking?",
+      "Peralatan apa yang perlu dibawa saat mendaki gunung?",
+      "Apa barang yang harus dibawa untuk pendakian gunung?",
+      "Apa saja peralatan penting yang harus dibawa saat hiking di gunung?",
+      "Apa saja barang yang wajib dibawa di tas saat naik gunung?",
+      "Apa saja perlengkapan yang diperlukan untuk mendaki gunung dengan aman?",
+      "Apa barang utama yang harus dibawa saat pendakian gunung?",
+      "Perlengkapan apa saja yang wajib ada dalam tas pendakian gunung?"
+    ],
+    "response": {
+      "Persiapan Makanan dan Air": [
+        "Untuk hiking 2 hari 1 malam, bawa makanan ringan seperti energy bar, kacang, dan jerky. Pilih makanan yang bergizi dan ringan.",
+        "Bawa setidaknya 2-3 liter air untuk perjalanan sehari penuh, sesuaikan dengan cuaca dan aktivitas. Gunakan botol air atau hydration pack.",
+        "Sangat disarankan membawa makanan ringan yang mudah dimakan saat beristirahat atau mengisi energi."
+      ],
+      "Perlengkapan Pelindung Diri": [
+        "Bawa sunscreen untuk melindungi kulit dari sinar UV, terutama di pegunungan.",
+        "Selalu bawa pakaian berlapis untuk menghadapi cuaca yang berubah drastis.",
+        "Gunakan obat anti-serangga untuk perlindungan dari gigitan serangga.",
+        "Masker berguna untuk melindungi dari debu, polusi, atau angin dingin."
+      ],
+      "Tas dan Perlengkapan Tambahan": [
+        "Untuk hiking 2 hari 1 malam, gunakan tas kapasitas 40-50 liter.",
+        "Gunakan sistem packing efisien seperti roll pakaian dan simpan barang berat di tengah dekat punggung."
+      ],
+      "Kebutuhan Pribadi dan Obat-obatan": [
+        "Bawa obat-obatan pribadi yang diperlukan dalam jumlah cukup.",
+        "Power bank sangat berguna untuk mengisi daya perangkat elektronik. Solar charger bisa menjadi pilihan tambahan.",
+        "Tisu basah dan kering penting untuk kebersihan selama perjalanan.",
+        "Jangan lupa navigasi seperti peta fisik, kompas, atau GPS untuk orientasi."
+      ],
+      "Keselamatan dan Pencegahan Cedera": [
+        "Gunakan sepatu hiking yang sesuai dan lakukan pemanasan sebelum hiking.",
+        "Bawa trekking pole untuk membantu keseimbangan di medan sulit."
+      ]
+    }
+  },
+  {
+    "intent": "Cuaca di Gunung",
+    "patterns": [
+      "Bagaimana cara mempersiapkan diri menghadapi cuaca ekstrem di gunung?",
+      "Apa yang harus dilakukan jika cuaca mendung saat mendaki?",
+      "Apakah cuaca gunung bisa berubah dengan cepat?",
+      "Bagaimana mengetahui cuaca buruk saat mendaki gunung?",
+      "Apa tanda-tanda cuaca buruk yang harus diwaspadai saat hiking?",
+      "Apakah suhu di gunung lebih dingin dari daerah dataran rendah?",
+      "Bagaimana cara mengantisipasi hujan deras saat mendaki gunung?",
+      "Apa yang perlu dipertimbangkan soal cuaca sebelum mendaki gunung?",
+      "Bagaimana cara mempersiapkan pakaian untuk cuaca dingin di gunung?",
+      "Berapa suhu rata-rata di gunung pada malam hari?",
+      "Apa suhu di gunung saat ini?",
+      "Bagaimana angin kencang memengaruhi aktivitas di gunung?",
+      "Bagaimana kondisi angin di puncak gunung?",
+      "Berapa kecepatan angin di gunung saat ini?",
+      "Persiapan dan Keamanan Pendakian",
+      "Apa alat wajib untuk menghadapi cuaca buruk di gunung?",
+      "Bagaimana cara bertahan dari suhu ekstrem di gunung?",
+      "Apa yang harus dipersiapkan untuk menghadapi suhu dingin di gunung?",
+      "Apa risiko utama mendaki gunung saat hujan deras?",
+      "Apa dampak cuaca ekstrem pada peralatan mendaki?",
+      "Bagaimana cara melindungi tubuh dari hipotermia saat mendaki gunung?",
+      "Apa yang harus dilakukan jika hujan deras tiba-tiba datang di gunung?",
+      "Apa langkah terbaik untuk menghadapi kabut tebal di gunung?",
+      "Bagaimana cara menghindari bahaya longsor saat hujan di gunung?",
+      "Bagaimana cara memilih pakaian untuk hiking?",
+      "Apakah mendaki gunung di musim hujan berbahaya?",
+      "Apakah ada aplikasi untuk memantau cuaca di gunung?",
+      "Apa aplikasi prakiraan cuaca yang akurat untuk pendakian gunung?",
+      "Bagaimana cara membaca prakiraan cuaca gunung dengan benar?",
+      "Apa hubungan antara tekanan udara dan suhu di gunung?",
+      "Bagaimana cara mengukur suhu udara tanpa alat di gunung?",
+      "Bagaimana cara memantau suhu saat mendaki gunung tanpa alat canggih?"
+    ],
+    "response": {
+      "Gunung Rinjani": {
+        "Keterangan Cuaca":"Cuaca di Gunung Rinjani cenderung berubah mendadak, dengan kondisi yang bisa berubah dari cerah menjadi hujan deras dalam waktu singkat. Tanda-tanda badai biasanya meliputi langit gelap, angin kencang, dan hujan. Suhu malam di Rinjani bisa berkisar antara 10°C hingga 15°C, sedangkan siang hari lebih hangat, sekitar 20°C hingga 25°C. Pendakian terbaik dilakukan pada musim kemarau antara Mei hingga Oktober, untuk menghindari cuaca buruk. Di puncak Rinjani, angin kencang dapat memengaruhi kenyamanan dan keselamatan pendaki.",
+        "Alat Wajib Persiapan": "Jas hujan, pakaian berlapis, pelindung angin, pelindung wajah untuk suhu ekstrem.",
+        "Risiko dan Dampak Cuaca": "Tanah licin, longsor saat hujan deras, peralatan bisa rusak karena basah.",
+        "Tindakan Cuaca Ekstrem": "Gunakan pakaian hangat dan bergerak untuk menjaga suhu tubuh. Jika hujan deras, cari perlindungan.",
+        "Navigasi Bahaya Longsor": "Gunakan GPS atau kompas untuk menghindari kabut tebal dan longsor, hindari daerah rawan saat hujan.",
+        "Pakaian dan Aplikasi Cuaca": "Pakai sepatu pendakian yang kokoh dan pakaian tahan air. Gunakan aplikasi cuaca seperti BMKG atau Windy untuk memantau kondisi."
+      },
+      "Gunung Bromo": {
+        "Keterangan Cuaca": "Cuaca di Gunung Bromo juga sering berubah dengan cepat, terutama dengan kabut tebal yang muncul mendadak dan angin dingin yang menyertai cuaca buruk. Suhu malam hari di Bromo bisa sangat dingin, antara 5°C hingga 10°C, sementara pada siang hari suhu rata-rata berkisar antara 15°C hingga 20°C. Waktu pendakian terbaik adalah antara April hingga September, di luar musim hujan. Angin kencang di puncak Bromo dapat mengganggu pendakian, sehingga perlu persiapan yang matang.",
+        "Alat Wajib Persiapan": "Jaket tebal, masker untuk debu vulkanik, pelindung angin.",
+        "Risiko dan Dampak Cuaca": "Kabut tebal dan tanah licin dapat membahayakan, peralatan cepat rusak.",
+        "Tindakan Cuaca Ekstrem": "Pakai pelindung untuk debu dan angin, cari perlindungan saat kabut tebal.",
+        "Navigasi Bahaya Longsor": "Gunakan peta atau aplikasi cuaca dan waspadai kabut tebal serta tanah licin.",
+        "Pakaian dan Aplikasi Cuaca": "Pakai pakaian hangat dan sepatu yang tahan air. Gunakan aplikasi cuaca untuk memantau perubahan kondisi."
+      },
+      "Gunung Merbabu": {
+        "Keterangan Cuaca": "Di Gunung Merbabu, cuaca juga bisa berubah dengan cepat, terutama pada ketinggian tertentu. Tanda-tanda cuaca buruk di Merbabu sering kali berupa hujan deras dan angin kencang. Suhu di malam hari dapat turun hingga 5°C hingga 10°C, dan pada siang hari berkisar antara 20°C hingga 25°C. Musim kemarau antara April hingga Oktober adalah waktu yang ideal untuk mendaki Merbabu, untuk menghindari kondisi cuaca ekstrem yang dapat menghambat perjalanan.",
+        "Alat Wajib Persiapan": "Jas hujan, sepatu pendakian yang kokoh, pelindung angin.",
+        "Risiko dan Dampak Cuaca": "Hujan deras dapat menyebabkan tanah licin, suhu ekstrem bisa mengganggu kenyamanan.",
+        "Tindakan Cuaca Ekstrem": "Pakai pakaian hangat, tetap bergerak agar suhu tubuh tetap stabil, cari tempat perlindungan jika cuaca buruk.",
+        "Navigasi Bahaya Longsor": "Pakai GPS atau kompas untuk menjaga arah, hindari daerah rawan longsor saat hujan.",
+        "Pakaian dan Aplikasi Cuaca": "Pakai sepatu yang cocok untuk medan berbatu dan pakaian tahan air. Gunakan aplikasi cuaca untuk memantau perubahan cuaca."
+      },
+      "Gunung Prau": {
+        "Keterangan Cuaca": "Cuaca di Gunung Prau dapat sangat bervariasi, dengan perubahan suhu yang signifikan antara siang dan malam. Pada malam hari, suhu bisa mencapai 10°C hingga 12°C, sementara siang hari berkisar antara 15°C hingga 20°C. Tanda-tanda badai biasanya berupa angin kencang dan kabut yang datang secara tiba-tiba. Waktu terbaik untuk mendaki Gunung Prau adalah saat musim kemarau, antara Mei hingga Oktober. Angin di puncak bisa sangat dingin, jadi persiapkan pakaian hangat.",
+        "Alat Wajib Persiapan": "Pakaian hangat, jas hujan, pelindung angin.",
+        "Risiko dan Dampak Cuaca": "Angin kencang dan kabut tiba-tiba dapat mengurangi visibilitas, peralatan bisa rusak jika basah.",
+        "Tindakan Cuaca Ekstrem": "Cari tempat perlindungan saat cuaca buruk, tetap berpakaian hangat untuk melindungi tubuh dari suhu dingin.",
+        "Navigasi Bahaya Longsor": "Hindari daerah rawan longsor dan gunakan kompas atau peta untuk navigasi.",
+        "Pakaian dan Aplikasi Cuaca": "Pakai pakaian berlapis dan sepatu yang tahan air. Gunakan aplikasi cuaca untuk memantau prakiraan cuaca."
+      },
+      "Gunung Ciremai": {
+        "Keterangan Cuaca": "Di Gunung Ciremai, cuaca juga bisa berubah dengan cepat, dengan suhu malam hari yang bisa turun hingga 5°C hingga 10°C, dan suhu siang hari sekitar 20°C hingga 25°C. Cuaca buruk sering kali datang dengan hujan deras dan angin kencang. Musim kemarau antara Mei hingga Oktober adalah waktu yang paling ideal untuk mendaki Ciremai, karena cuaca cenderung lebih stabil. Angin di puncak Ciremai bisa sangat kuat, sehingga perlu berhati-hati, terutama saat mencapai puncak.",
+        "Alat Wajib Persiapan": "Jas hujan, pakaian berlapis, pelindung angin.",
+        "Risiko dan Dampak Cuaca": "Tanah bisa licin saat hujan, peralatan bisa rusak jika terendam air.",
+        "Tindakan Cuaca Ekstrem": "Gunakan pakaian hangat dan pelindung tubuh untuk menjaga suhu tubuh tetap stabil.",
+        "Navigasi Bahaya Longsor": "Hindari jalur yang rawan longsor dan pastikan arah tetap jelas dengan menggunakan kompas.",
+        "Pakaian dan Aplikasi Cuaca": "Pakai pakaian tahan air dan sepatu yang kokoh. Gunakan aplikasi cuaca untuk memantau kondisi cuaca di gunung."
+      },
+      "Gunung Ijen": {
+        "Keterangan Cuaca": "Cuaca di Gunung Ijen juga tidak kalah ekstrem, dengan perubahan cuaca yang cukup mendadak. Pada malam hari, suhu bisa turun antara 10°C hingga 15°C, sementara pada siang hari berkisar antara 20°C hingga 25°C. Puncak Gunung Ijen bisa sangat berangin dan suhu yang dingin bisa sangat mempengaruhi kenyamanan pendakian. Waktu pendakian yang terbaik adalah selama musim kemarau antara Mei hingga Oktober, untuk menghindari hujan dan kabut yang bisa mengurangi visibilitas dan keselamatan pendaki.",
+        "Alat Wajib Persiapan": "Pakaian hangat, masker untuk gas beracun, pelindung angin.",
+        "Risiko dan Dampak Cuaca": "Angin kencang dan suhu dingin bisa sangat mempengaruhi kenyamanan, gas beracun dari kawah bisa berbahaya.",
+        "Tindakan Cuaca Ekstrem": "Gunakan masker dan pakaian pelindung, cari tempat perlindungan untuk menghindari gas beracun.",
+        "Navigasi Bahaya Longsor": "Gunakan peta atau GPS dan hindari area yang rawan longsor terutama saat hujan.",
+        "Pakaian dan Aplikasi Cuaca": "Pakai pakaian berlapis dan sepatu tahan air. Gunakan aplikasi cuaca untuk memantau kondisi gunung."
+      },
+      "Gunung Kerinci": {
+        "Keterangan": "Suhu dan cuaca di Gunung Kerinci dapat bervariasi tergantung pada ketinggian dan kondisi cuaca saat itu. Di daerah dasar gunung atau lebih rendah, suhu berkisar antara 20°C hingga 30°C, sementara di puncak yang terletak sekitar 3.805 meter di atas permukaan laut, suhu bisa sangat dingin, terutama pada malam hari, dengan suhu mencapai 5°C hingga 10°C, atau bahkan lebih rendah. Pada musim hujan, suhu di puncak cenderung lebih dingin karena hujan yang dapat menurunkan suhu lebih lanjut.",
+        "Alat Wajib Persiapan": "Jas hujan, pakaian hangat, sepatu pendakian yang kokoh.",
+        "Risiko dan Dampak Cuaca": "Hujan deras dan kabut tebal dapat mengurangi visibilitas, suhu ekstrem bisa menyebabkan hipotermia.",
+        "Tindakan Cuaca Ekstrem": "Segera cari perlindungan saat hujan deras, gunakan pakaian hangat dan terus bergerak untuk menjaga suhu tubuh.",
+        "Navigasi Bahaya Longsor": "Gunakan GPS atau kompas dan hindari jalur yang rawan longsor, terutama saat hujan.",
+        "Pakaian dan Aplikasi Cuaca": "Pakai sepatu kokoh dan pakaian yang tahan air. Gunakan aplikasi cuaca untuk memantau prakiraan cuaca."
+      }
+    }    
+  },
+  {
+    "intent": "Persiapan cost",
+    "patterns": [
+      "Berapa biaya untuk mendaki?", 
+      "Apa saja pengeluaran yang perlu dipersiapkan untuk perjalanan?", 
+      "Berapa estimasi biaya transportasi?", 
+      "Berapa biaya sewa peralatan hiking?", 
+      "Ada biaya untuk masuk ke area pendakian?", 
+      "Berapa biaya akomodasi di sekitar lokasi?", 
+      "Perlu mempersiapkan biaya makan dan minum selama pendakian?", 
+      "Ada biaya tambahan untuk guide atau porter?", 
+      "Berapa total biaya pendakian?", 
+      "Bagaimana cara menghemat biaya selama pendakian?"
+    ],
+    "response": "Biaya hiking sangat bergantung pada lokasi, durasi, dan kebutuhan pribadi. Secara umum, biaya mencakup tiket masuk, sewa perlengkapan seperti tenda dan sleeping bag, serta konsumsi selama pendakian. Anggaran mulai dari Rp500.000 hingga Rp3.000.000 biasanya cukup untuk pendakian di gunung-gunung populer di Indonesia. Transportasi sering menjadi salah satu komponen biaya terbesar, terutama jika basecamp sulit dijangkau seperti di Rinjani atau Kerinci, di mana transportasi tambahan seperti ojek atau jeep bisa menambah biaya hingga ratusan ribu rupiah. Selain itu, beberapa gunung memiliki perbedaan harga tiket masuk untuk wisatawan lokal dan asing, seperti Bromo, di mana tiket domestik sekitar Rp30.000 dan tiket untuk turis asing dapat mencapai Rp150.000 atau lebih.\n\nBiaya porter dan pemandu merupakan tambahan opsional tetapi sering direkomendasikan, terutama untuk pendakian di jalur yang lebih menantang. Porter biasanya mematok harga Rp200.000–Rp400.000 per hari, sedangkan pemandu sekitar Rp300.000–Rp500.000 per hari. Untuk menghemat biaya, pendaki dapat membawa perlengkapan sendiri, bergabung dengan grup hiking, atau memilih paket pendakian yang mencakup transportasi, peralatan, dan konsumsi. Dengan perencanaan yang baik, biaya hiking dapat disesuaikan sesuai kebutuhan tanpa mengurangi kenyamanan dan keselamatan."
+  },
+  {
+    "intent": "Salam",
+    "patterns": [
+      "Hi!",
+      "Halo, apa kabar?Selamat pagi!",
+      "Hai, ada yang bisa saya bantu?",
+      "Apa kabar hari ini?"
+    ],
+    "response": [
+      "Halo! Apa kabar?",
+      "Hi! Ada yang bisa saya bantu hari ini?",
+      "Halo, Bagaimana kabarmu?"
+    ]
+  },
+
+  {
+    "intent": "Goodbye",
+    "patterns": [
+      "Sampai jumpa!",
+      "Bye!",
+      "Terima kasih, sampai nanti.",
+      "Selamat tinggal.",
+      "Oke, sampai ketemu lagi!"
+    ],
+    "response": [
+      "Sampai jumpa! Semoga harimu menyenangkan.",
+      "Bye! Jika butuh bantuan lagi, jangan ragu menghubungi saya.",
+      "Oke, sampai bertemu lagi!"
+    ]
+  },
+  {
+    "intent": "Thank You",
+    "patterns": [
+      "Terima kasih banyak!",
+      "Thanks a lot!",
+      "Makasih banget ya!",
+      "Saya sangat menghargai bantuanmu.",
+      "Terima kasih atas waktu kamu."
+    ],
+    "response": [
+      "Sama-sama, senang bisa membantu!",
+      "Terima kasih kembali! Semoga informasi ini bermanfaat.",
+      "Dengan senang hati, kapan pun Anda butuh bantuan."
+    ]
+  },
+  {
+    "intent": "Confirmation",
+    "patterns": [
+      "Iya, betul.",
+      "Ya, saya setuju.",
+      "Benar sekali.",
+      "Oke, itu yang saya maksud.",
+      "Iya, seperti itu."
+    ],
+    "response": [
+      "Baik, terima kasih atas konfirmasinya.",
+      "Oke, saya akan lanjutkan sesuai permintaan Anda.",
+      "Bagus, saya senang kita sudah sepakat."
+    ]
+  },
+  {
+    "intent": "Help",
+    "patterns": [
+      "Bisa bantu saya?",
+      "Saya butuh bantuan nih.",
+      "Apa kamu bisa membantu?",
+      "Tolong dong, saya nggak ngerti ini.",
+      "Bisa kasih informasi lebih?"
+    ],
+    "response": [
+      "Tentu, saya di sini untuk membantu! Apa yang Anda butuhkan?",
+      "Tolong jelaskan lebih detail, agar saya bisa membantu lebih baik.",
+      "Saya siap membantu, beri tahu apa yang Anda perlukan."
+    ]
+  },
+  {
+    "intent": "Feedback",
+    "patterns": [
+      "Saya suka cara ini, tapi bisa ditingkatkan lagi.",
+      "Penjelasannya bagus, tapi saya masih bingung sedikit.",
+      "Secara umum bagus, tapi perlu lebih jelas.",
+      "Saya rasa ini cukup baik, terima kasih!",
+      "Ini sangat membantu, tapi ada sedikit kekurangan."
+    ],
+    "response": [
+      "Terima kasih atas masukan Anda, kami akan coba perbaiki.",
+      "Saya mengerti, izinkan saya menjelaskan lebih jelas.",
+      "Feedback Anda sangat berarti, terima kasih!"
+    ]
+  },
+  {
+    "intent": "Hipotermia",
+    "patterns": [
+    "Bagaimana gejala awal hipotermia?",
+    "Bagaimana cara mencegah hipotermia saat hiking?",
+    "Seberapa cepat hipotermia bisa terjadi di gunung?",
+    "Bagaimana cara mengobati hipotermia?",
+    "Apakah pakaian yang salah dapat menyebabkan hipotermia?",
+    "Berapa suhu yang bisa menyebabkan hipotermia?",
+    "Bagaimana cara mengenali hipotermia pada pendaki lain?",
+    "Apakah tidur dalam cuaca dingin bisa menyebabkan hipotermia?",
+    "Apakah makanan dan minuman bisa membantu mencegah hipotermia?",
+    "Bagaimana cara mencegah hipotermia saat tidur di luar?"
+    ],
+    "response":{
+      "Pencegahan Hipotermia": "Untuk mencegah hipotermia saat mendaki gunung, penting untuk menjaga suhu tubuh tetap stabil. Gunakan pakaian berlapis yang sesuai dengan kondisi cuaca, mulai dari lapisan dasar yang menyerap keringat (seperti bahan wol atau sintetis), lapisan isolasi (seperti fleece atau down), hingga lapisan luar yang tahan angin dan air. Selalu pastikan untuk menjaga tubuh tetap kering dan mengganti pakaian basah sesegera mungkin. Selain itu, hindari kelelahan berlebihan dan lakukan aktivitas fisik secara teratur untuk menghasilkan panas tubuh.",
+      "Makanan dan Minuman Hangat": "Mengonsumsi makanan berkalori tinggi dan minuman hangat sangat membantu dalam menjaga suhu tubuh. Makanan seperti kacang-kacangan, cokelat, atau makanan tinggi karbohidrat memberikan energi yang dibutuhkan tubuh untuk tetap hangat.",
+      "Perlindungan dari Cuaca Ekstrem": "Di gunung dengan suhu yang sangat dingin, seperti Gunung Kerinci atau Gunung Rinjani, pastikan untuk menggunakan pelindung angin dan hujan. Gunakan sleeping bag yang sesuai dengan suhu ekstrem dan matras yang memiliki isolasi untuk mencegah kehilangan panas tubuh saat tidur.",
+      "Tanda-tanda Hipotermia": "Hipotermia dapat terjadi secara bertahap. Tanda-tandanya meliputi gemetar hebat, kesulitan berbicara, kehilangan koordinasi tubuh, dan kebingungan. Pada tahap lanjut, seseorang mungkin tidak dapat bergerak dengan baik atau kehilangan kesadaran. Pada pendaki pemula, tanda-tanda awal termasuk kesulitan bergerak dan kurangnya energi, yang perlu segera ditanggapi dengan pemanasan tubuh.",
+      "Risiko Hipotermia": "Semakin tinggi gunung yang didaki, semakin besar risiko hipotermia, terutama di malam hari saat suhu turun drastis. Gunung dengan ketinggian seperti Gunung Merbabu dan Gunung Prau memiliki suhu yang cukup rendah di malam hari, meskipun sudah mengenakan pakaian tebal. Pemanasan tubuh dengan aktif bergerak atau menggunakan pemanas tangan dapat membantu.",
+      "Cara Mengatasi Hipotermia": "Jika merasa mulai kedinginan, segera cari perlindungan dari angin dan hujan. Untuk menghangatkan tubuh dengan cepat, bergeraklah aktif atau gunakan pakaian tambahan dan alat pemanas tubuh seperti pemanas tangan atau botol air panas. Tidur dalam cuaca dingin tanpa perlindungan yang cukup bisa meningkatkan risiko hipotermia, jadi pastikan tempat tidur terlindung dari angin dan kelembapan.",
+      "Waspadai Hipotermia pada Malam Hari": "Hipotermia lebih berbahaya di malam hari karena suhu turun lebih drastis. Gunakan waktu siang hari untuk mempersiapkan perlengkapan dan istirahat, agar tubuh tidak terlalu lelah saat malam tiba.",
+      "Perbedaan Hipotermia dan Kedinginan Biasa": "Hipotermia berbeda dengan kedinginan biasa karena dampaknya lebih serius dan bisa berbahaya bagi tubuh. Kedinginan biasa hanya menyebabkan rasa tidak nyaman, sementara hipotermia bisa menyebabkan hilangnya kesadaran dan kegagalan organ tubuh.",
+      "Persiapan untuk Mengatasi Hipotermia": "Selalu bawa perlengkapan yang tepat untuk mencegah hipotermia, seperti pakaian hangat, sleeping bag yang cocok dengan suhu ekstrem, dan alat pemanas tangan. Jika mendaki di musim hujan atau cuaca dingin, pastikan Anda membawa perlengkapan anti air dan pelindung tubuh untuk tetap kering.",
+      "Tindakan Terakhir": "Jika mendaki pada malam yang sangat dingin atau di ketinggian ekstrem, pastikan untuk memantau kondisi tubuh secara rutin dan segera bertindak jika tanda-tanda hipotermia muncul, baik pada diri sendiri atau teman pendaki."
+    }
+  },
+  {
+    "intent": "Dehidrasi",
+    "patterns": [
+      "Bagaimana gejala awal dehidrasi saat hiking?",
+      "Seberapa cepat dehidrasi bisa terjadi saat hiking?",
+      "Bagaimana cara menghindari dehidrasi saat hiking?",
+      "Apakah air mineral cukup untuk menghindari dehidrasi?",
+      "Seberapa banyak air yang harus dibawa saat hiking?",
+      "Bagaimana cara mengobati dehidrasi saat pendakian?",
+      "Apakah dehidrasi bisa berbahaya saat hiking?",
+      "Bagaimana cara mengukur tingkat dehidrasi tubuh?",
+      "Apakah cuaca panas lebih mempercepat dehidrasi?",
+      "Bagaimana cara menjaga keseimbangan elektrolit saat hiking?"
+    ],
+    "response":{
+      "Pencegahan Dehidrasi": "Dehidrasi terjadi ketika tubuh kehilangan lebih banyak cairan daripada yang dikonsumsi, yang menyebabkan tubuh tidak dapat berfungsi dengan baik. Untuk mencegah dehidrasi selama pendakian, pastikan Anda minum air secara teratur sepanjang perjalanan, bahkan sebelum merasa haus. Penting untuk membawa air yang cukup dan menghindari menunggu sampai rasa haus muncul. Selain air, mengonsumsi minuman isotonik atau yang mengandung elektrolit juga dapat membantu menjaga keseimbangan cairan tubuh.",
+      "Tanda-Tanda Dehidrasi": "Tanda awal dehidrasi termasuk mulut kering, kehausan berlebihan, penurunan volume urin, atau urin berwarna gelap. Jika gejala semakin parah, seseorang bisa merasa pusing, lemas, mual, atau bahkan kehilangan kesadaran. Selalu perhatikan gejala ini, terutama pada pendaki lain yang mungkin tidak menyadari bahwa mereka kekurangan cairan.",
+      "Mengatur Asupan Cairan": "Selalu minum secara berkala, bukan hanya ketika merasa haus, untuk mencegah tubuh dehidrasi. Gunakan kantong air atau botol yang mudah dijangkau selama pendakian. Jika memungkinkan, bawa tabung hidrasi agar Anda bisa minum sambil berjalan tanpa harus berhenti. Jangan lupa untuk membawa air cadangan atau menggunakan filter air portabel jika ada sumber air alami yang bisa dimanfaatkan.",
+      "Cuaca dan Dehidrasi": "Dehidrasi bisa terjadi baik di cuaca panas maupun dingin. Di daerah dengan cuaca panas, tubuh akan mengeluarkan banyak keringat, sementara di cuaca dingin, udara kering dan pernapasan yang lebih cepat bisa mengurangi kelembapan tubuh. Oleh karena itu, sangat penting untuk tetap terhidrasi meskipun cuaca tampaknya tidak panas.",
+      "Pemulihan dari Dehidrasi": "Jika Anda atau teman Anda terkena dehidrasi, minumlah air sedikit demi sedikit, bukan sekaligus dalam jumlah besar, untuk menghindari gangguan pencernaan. Selain itu, konsumsi minuman yang mengandung elektrolit untuk menggantikan mineral yang hilang. Hindari aktivitas berat dan beristirahat sampai tubuh terasa lebih baik.",
+      "Perbedaan Antara Dehidrasi dan Kelelahan": "Dehidrasi dan kelelahan bisa memiliki gejala yang mirip, seperti kelemahan dan pusing. Namun, dehidrasi biasanya disertai dengan mulut kering dan urin berwarna gelap, sedangkan kelelahan lebih berkaitan dengan kelelahan fisik tanpa gejala dehidrasi yang jelas.",
+      "Pentingnya Hidrasi": "Hidrasi yang cukup sangat penting selama pendakian karena tubuh membutuhkan cairan untuk menjaga suhu tubuh yang stabil, melancarkan peredaran darah, dan menjaga otot tetap bekerja dengan baik. Jangan lupa untuk membawa air dan minuman yang mengandung elektrolit sepanjang perjalanan.",
+      "Menghindari Dehidrasi di Malam Hari": "Malam hari di gunung juga dapat menyebabkan kehilangan cairan tubuh melalui pernapasan. Pastikan untuk minum air sebelum tidur dan menjaga cairan tubuh dengan membawa air yang bisa diakses sepanjang malam, meskipun dalam suhu dingin.",
+      "Menanggulangi Dehidrasi di Cuaca Ekstrem": "Saat mendaki di cuaca ekstrim, baik itu panas atau dingin, penting untuk selalu memperhatikan hidrasi tubuh Anda. Selain minum air secara teratur, makan makanan yang kaya air, seperti buah-buahan dan sayuran, dapat membantu menjaga tubuh tetap terhidrasi.",
+      "Kiat untuk Mencegah Dehidrasi": "Untuk mencegah dehidrasi, pastikan untuk memulai pendakian dalam kondisi terhidrasi dengan baik dan bawa persediaan air yang cukup. Jika sumber air alam tersedia, gunakan filter air portabel untuk memastikan cairan yang Anda konsumsi aman dan bersih."
+    }
+  },
+  {
+    "intent": "Tumbuhan liar",
+    "patterns": [
+      "Apa tumbuhan berbahaya yang harus dihindari saat hiking?",
+      "Bagaimana cara mengenali tumbuhan beracun?",
+      "Apakah semua tumbuhan liar bisa dimakan?",
+      "Bagaimana cara mengidentifikasi tumbuhan yang bisa digunakan sebagai obat?",
+      "Apakah ada tumbuhan liar yang bisa digunakan sebagai bahan makanan?",
+      "Apakah bisa ada risiko alergi terhadap tumbuhan liar?",
+      "Bagaimana cara menghindari tumbuhan berduri atau tajam?",
+      "Apakah tumbuhan liar di gunung bisa menjadi bahan pembuat obat tradisional?",
+      "Bagaimana cara memetik tumbuhan liar dengan aman?",
+      "Bagaimana cara mengetahui tumbuhan mana yang aman untuk dijadikan obat?"
+    ],
+    "response":{
+      "Identifikasi Tumbuhan Beracun": "Saat mendaki, penting untuk mengenali tumbuhan beracun yang dapat membahayakan kesehatan, seperti Datura, Ricinus communis (castor bean), dan beberapa jenis Acokanthera yang sering ditemukan di jalur pendakian. Tumbuhan ini dapat menyebabkan keracunan melalui kontak langsung dengan kulit atau konsumsi. Biasanya, tumbuhan beracun memiliki ciri-ciri seperti bau yang menyengat, daun atau buah yang tampak mencurigakan, atau getah yang berwarna mencolok.",
+      "Tanda-Tanda Keracunan": "Gejala keracunan akibat tumbuhan beracun bisa berupa mual, muntah, diare, iritasi kulit, dan pusing. Pada beberapa tumbuhan, seperti Datura, gejala lebih serius bisa termasuk halusinasi atau gangguan pernapasan. Jika Anda atau teman pendaki menunjukkan gejala-gejala ini setelah kontak dengan tumbuhan, segera lakukan pertolongan pertama dan cari bantuan medis.",
+      "Pertolongan Pertama": "Jika terkena getah tumbuhan beracun, segera cuci area yang terkena dengan air dan sabun yang banyak. Hindari menggosok area yang terkena. Jika Anda tidak sengaja mengonsumsi bagian tumbuhan beracun, segera hubungi layanan darurat atau pusat informasi medis terdekat. Jangan menunggu gejala muncul. Beberapa tumbuhan bisa memerlukan penanganan medis cepat untuk mencegah kerusakan lebih lanjut.",
+      "Menghindari Tumbuhan Beracun": "Untuk menghindari tumbuhan beracun, jangan menyentuh atau mengonsumsi tumbuhan yang tidak Anda kenal. Selalu bawa panduan flora lokal atau berkonsultasilah dengan pemandu pendakian yang berpengalaman untuk mengetahui jenis tumbuhan yang aman dan yang berbahaya di jalur pendakian. Jika Anda tidak yakin tentang suatu tumbuhan, sebaiknya hindari kontak langsung dengan tumbuhan tersebut.",
+      "Keamanan Umum": "Selalu kenakan pelindung kulit seperti sarung tangan saat berinteraksi dengan tanaman liar, dan pastikan untuk membawa obat-obatan dasar seperti antihistamin jika Anda memiliki riwayat alergi terhadap tumbuhan tertentu. Jika Anda berencana mendaki di jalur yang belum familiar, lebih baik mendapatkan informasi terlebih dahulu tentang tumbuhan beracun di area tersebut."
+    }
+  },
+  {
+    "intent": "Hewan Liar",
+    "patterns": [
+      "Bagaimana cara menghadapi hewan liar saat hiking?",
+      "Apakah ada hewan berbahaya di gunung?",
+      "Bagaimana cara menghindari serangan hewan liar?",
+      "Apakah membawa alat pengusir hewan liar efektif?",
+      "Seperti apa perilaku hewan liar di malam hari?",
+      "Apakah kita perlu membawa alat pertahanan diri untuk hewan liar?",
+      "Bagaimana cara melindungi makanan dari hewan liar?",
+      "Apakah hewan liar berbahaya bisa mendekati tenda?",
+      "Bagaimana cara mengenali jejak hewan liar?",
+      "Bagaimana cara menghindari hewan berbisa di gunung?"
+    ],
+    "response":{
+      "Persiapan Menghadapi Hewan Liar": "Sebelum mendaki, pastikan Anda membawa perlengkapan yang dapat melindungi diri seperti semprotan pepijat atau semprotan anti-hewan liar yang dapat digunakan untuk menjauhkan mereka. Selain itu, pastikan untuk membawa peralatan P3K, karena serangan hewan liar bisa terjadi kapan saja.",
+      "Mengenali Hewan Liar yang Berbahaya": "Berbagai hewan liar seperti ular, monyet, babi hutan, dan serangga bisa ditemukan di jalur pendakian gunung. Hewan seperti ular atau kalajengking mungkin lebih aktif di musim panas, sedangkan babi hutan bisa agresif jika merasa terancam. Selalu berhati-hati dan amati lingkungan sekitar.",
+      "Menghindari Serangan Hewan Liar": "Untuk menghindari serangan, pastikan Anda tidak mendekati atau mengganggu hewan liar. Jika Anda bertemu dengan hewan seperti ular atau babi hutan, jangan panik dan coba perlahan mundur. Hindari membawa makanan yang berbau kuat yang bisa menarik perhatian hewan.",
+      "Tindakan jika Diserang Hewan Liar": "Jika Anda atau teman Anda diserang hewan liar, segera cari perlindungan dan berusaha melarikan diri. Jika digigit, segera lakukan pertolongan pertama dan hubungi layanan darurat.",
+      "Cara Menghadapi Hewan Liar pada Malam Hari": "Pada malam hari, hewan liar seperti serangga dan beberapa mamalia mungkin lebih aktif. Gunakan pelindung tubuh seperti jaring nyamuk saat tidur dan simpan makanan dengan rapat agar tidak menarik perhatian hewan.",
+      "Menghindari Kehadiran Hewan Liar": "Untuk menghindari kehadiran hewan liar di jalur pendakian, hindari berkemah atau berhenti di tempat yang tampaknya memiliki banyak jejak atau tanda hewan liar. Pastikan untuk mengikuti jalur yang sudah dikenal dan aman.",
+      "Pemilihan Waktu Mendaki": "Jika mendaki di malam hari, selalu waspadai suara atau jejak hewan liar. Meskipun beberapa hewan mungkin lebih aktif di malam hari, Anda dapat mengurangi risiko dengan menjaga kebisingan minimal dan tidak menarik perhatian mereka.",
+      "Pentingnya Kehati-hatian": "Menghadapi hewan liar di gunung memerlukan kewaspadaan dan kehati-hatian. Selalu ikuti petunjuk yang diberikan oleh pemandu atau petugas setempat mengenai hewan-hewan yang berpotensi berbahaya di area tersebut."
+    }
+  },
+  {
+    "intent": "Budaya",
+    "patterns": [
+        "Apa tradisi unik yang harus saya ketahui sebelum mendaki Gunung Rinjani?",
+        "Apakah ada adat istiadat khusus di Gunung Merbabu yang perlu diperhatikan?",
+        "Apa mitos terkenal terkait Gunung Bromo?",
+        "Apakah ada ritual yang dilakukan sebelum pendakian Gunung Prau?",
+        "Apa yang harus saya hindari agar tidak melanggar adat di Gunung Ciremai?",
+        "Bagaimana budaya masyarakat lokal di sekitar Gunung Kerinci?",
+        "Apakah ada cerita legenda tentang Gunung Ijen?",
+        "Apakah boleh membawa makanan non-halal di sekitar kawasan Gunung Rinjani?",
+        "Apa makanan khas lokal yang wajib dicoba di daerah Gunung Merbabu?",
+        "Apakah masyarakat sekitar Gunung Bromo terbuka untuk wisatawan?",
+        "Apakah ada kepercayaan lokal yang harus dihormati di Gunung Ciremai?",
+        "Bagaimana pendaki lokal di Gunung Kerinci menjaga tradisi mereka?",
+        "Apakah ada festival yang sering diadakan di dekat Gunung Bromo?",
+        "Apa arti penting spiritual Gunung Rinjani bagi masyarakat setempat?",
+        "Apakah wisatawan di Gunung Ijen perlu mengikuti aturan khusus yang diberlakukan masyarakat?",
+        "Bagaimana cara menghormati adat masyarakat di Gunung Merbabu saat mendaki?",
+        "Apakah ada pantangan yang harus dipatuhi saat mendaki Gunung Ciremai?",
+        "Bagaimana kepercayaan lokal memengaruhi pendakian di Gunung Kerinci?",
+        "Apa hubungan Gunung Prau dengan sejarah lokal di daerah sekitarnya?",
+        "Apa saja kesalahan umum yang dilakukan wisatawan terkait adat di Gunung Bromo?",
+        "Apakah wisatawan diperbolehkan mengambil sesuatu dari kawasan Gunung Rinjani?",
+        "Apakah ada cerita rakyat tentang asal-usul Gunung Ciremai?",
+        "Bagaimana legenda Gunung Kerinci diceritakan oleh masyarakat lokal?",
+        "Apa tradisi yang dilakukan masyarakat sebelum pendakian di Gunung Merbabu?",
+        "Apakah ada tarian adat yang sering dipertunjukkan di sekitar Gunung Bromo?",
+        "Apakah makanan halal mudah ditemukan di kawasan Gunung Rinjani?",
+        "Bagaimana masyarakat Gunung Prau melestarikan budaya lokal mereka?",
+        "Apakah wisatawan bisa berinteraksi dengan masyarakat lokal di Gunung Kerinci?",
+        "Apa arti penting Kawah Ijen dalam kepercayaan masyarakat setempat?"
+    ],
+    "response": {
+        "Gunung Rinjani": "Gunung Rinjani adalah kawasan sakral bagi masyarakat Sasak, dengan ritual seperti Pekelem di Danau Segara Anak. Hormati adat setempat dengan tidak mengambil benda dari area suci dan bersikap sopan kepada masyarakat lokal.",
+        "Gunung Merbabu": "Gunung Merbabu memiliki mitos sebagai tempat istirahat leluhur dan tradisi lokal seperti menjual makanan khas di pos pendakian. Jaga sikap dan hindari kebisingan di area tertentu untuk menghormati kepercayaan masyarakat.",
+        "Gunung Bromo": "Gunung Bromo adalah tempat suci bagi Suku Tengger, yang mengadakan Festival Yadnya Kasada setiap tahun. Hormati tradisi mereka dengan menjaga kebersihan, tidak membuang sampah, dan mematuhi aturan di area kawah.",
+        "Gunung Prau": "Masyarakat Dieng menjaga tradisi lokal di sekitar Gunung Prau. Hormati mereka dengan tidak memetik tanaman atau bertindak tidak sopan. Nama 'Prau' sendiri berasal dari bentuknya yang menyerupai perahu, bagian dari cerita lokal yang menarik.",
+        "Gunung Ciremai": "Gunung Ciremai dianggap sakral oleh masyarakat sekitar, dengan pantangan untuk tidak mengambil apa pun dari puncak. Legenda dan cerita lokal sering diceritakan oleh penduduk sekitar, memberikan pengalaman budaya yang unik.",
+        "Gunung Kerinci": "Suku Kerinci melaksanakan ritual adat seperti kenduri sko untuk memohon keselamatan. Hormati tradisi ini dan jaga hubungan baik dengan penduduk lokal, yang sering membantu pendaki dengan kebutuhan logistik.",
+        "Gunung Ijen": "Kawah Ijen memiliki makna spiritual bagi masyarakat lokal. Hormati pekerja tambang belerang di kawasan tersebut dan cicipi makanan khas daerah untuk mendalami budaya lokal."
+    }
+  },
+  { 
+    "intent": "Jalur dan Waktu Pendakian",
+    "patterns": [
+      "Bagaimana cara memilih jalur pendakian yang aman?",
+      "Seberapa sulit jalur pendakian ini?",
+      "Apakah ada jalur pendakian yang lebih mudah di gunung ini?",
+      "Bagaimana cara mengetahui kondisi jalur pendakian?",
+      "Seperti apa jalur pendakian yang cocok untuk pemula?",
+      "Bagaimana cara mengetahui jalur pendakian yang terdekat?",
+      "Apakah ada jalur alternatif jika jalur utama tertutup?",
+      "Seberapa panjang jalur pendakian ini?",
+      "Bagaimana cara mempersiapkan diri untuk jalur pendakian yang ekstrem?",
+      "Apakah ada jalur pendakian yang lebih pendek untuk hiking sehari?",
+      "Berapa lama waktu yang dibutuhkan untuk mendaki gunung ini?",
+      "Apakah lebih baik mendaki di pagi atau sore hari?",
+      "Bagaimana cara merencanakan waktu perjalanan saat mendaki?",
+      "Apakah musim tertentu mempengaruhi waktu perjalanan?",
+      "Berapa lama waktu perjalanan dari basecamp ke puncak?",
+      "Apakah ada waktu terbaik untuk mendaki gunung ini?",
+      "Seberapa cepat pendaki biasanya mencapai puncak?",
+      "Bagaimana cara memperkirakan waktu perjalanan selama pendakian?",
+      "Apakah pendakian bisa selesai dalam satu hari?",
+      "Bagaimana cara mengatur waktu perjalanan agar aman dan efisien?"
+    ],
+    "response": {
+      "Gunung Rinjani": {
+        "Jalur Populer": "Gunung Rinjani memiliki jalur populer seperti Senaru dan Sembalun, yang menawarkan pemandangan indah namun menantang.",
+        "Jalur Alternatif": "Jalur alternatif tersedia di bagian selatan untuk menghindari keramaian, dengan waktu pendakian rata-rata 2–3 hari.",
+        "Waktu Pendakian": "Pendakian Gunung Rinjani biasanya memakan waktu 2–3 hari tergantung jalur yang dipilih. Jalur Sembalun lebih landai tetapi lebih panjang, sedangkan jalur Senaru lebih cepat namun menanjak.",
+        "Waktu Terbaik Matahari Terbit": "Waktu terbaik untuk mendaki adalah dini hari jika ingin mencapai Danau Segara Anak saat matahari terbit.",
+        "Waktu Mencapai Danau Segara Anak": "Waktu yang diperlukan untuk mencapai Danau Segara Anak adalah sekitar 1–2 hari tergantung jalur yang dipilih."
+      },
+      "Gunung Merbabu": {
+        "Jalur Utama": "Jalur Selo, Wekas, dan Suwanting adalah jalur utama di Gunung Merbabu.",
+        "Jalur Untuk Pemula": "Selo cocok untuk pemula, sedangkan Suwanting lebih menantang dengan pemandangan yang memukau.",
+        "Pos Air Bersih": "Pos air bersih tersedia di beberapa titik.",
+        "Waktu Pendakian": "Pendakian Gunung Merbabu rata-rata membutuhkan waktu 6–9 jam untuk naik-turun melalui jalur Selo, sementara jalur Wekas sedikit lebih singkat.",
+        "Waktu Terbaik Matahari Terbit": "Untuk pengalaman maksimal, mulailah pendakian pada malam hari agar bisa menyaksikan matahari terbit dari puncak."
+      },
+      "Gunung Bromo": {
+        "Jalur Pendakian": "Pendakian Gunung Bromo umumnya dilakukan dengan jeep menuju kawah, diikuti hiking pendek.",
+        "Sunrise Point": "Penanjakan 1 dan Bukit Cinta adalah titik terbaik untuk sunrise.",
+        "Waktu Pendakian": "Pendakian Gunung Bromo relatif singkat, dengan durasi sekitar 1–2 jam untuk mencapai kawah dari Cemoro Lawang.",
+        "Waktu Sunset Point": "Jika ingin menikmati sunrise di Penanjakan 1, perjalanan jeep dari basecamp memakan waktu 30–45 menit, dilanjutkan dengan pendakian pendek."
+      },
+      "Gunung Prau": {
+        "Jalur Dieng": "Jalur Dieng adalah yang paling populer karena singkat dan mudah, sedangkan Kalilembu menawarkan pengalaman yang lebih sepi.",
+        "Waktu Pendakian": "Mendaki Gunung Prau hanya memakan waktu 2–3 jam untuk mencapai puncak melalui jalur Dieng.",
+        "Waktu Pendakian Satu Hari": "Perjalanan dapat diselesaikan dalam satu hari, tetapi pendakian malam direkomendasikan untuk menikmati pemandangan matahari terbit yang memukau."
+      },
+      "Gunung Ciremai": {
+        "Jalur Linggarjati": "Jalur Linggarjati dan Apuy adalah pilihan utama untuk Gunung Ciremai.",
+        "Jalur Untuk Pemula": "Linggarjati lebih menantang, sementara Apuy lebih ramah pemula.",
+        "Air Bersih": "Air bersih terbatas, jadi persiapkan logistik Anda dengan baik.",
+        "Waktu Pendakian": "Pendakian Gunung Ciremai membutuhkan waktu 12–15 jam untuk naik-turun melalui jalur Linggarjati.",
+        "Waktu Pendakian Jalur Apuy": "Jalur Apuy lebih singkat, dengan durasi sekitar 8–10 jam.",
+        "Waktu Ideal Pendakian": "Pendakian ideal dilakukan dalam 2 hari dengan bermalam di pos tertentu."
+      },
+      "Gunung Kerinci": {
+        "Jalur Kersik Tuo": "Jalur Kersik Tuo adalah jalur utama menuju puncak Gunung Kerinci.",
+        "Waktu Pendakian": "Pendakian Gunung Kerinci memakan waktu 8–10 jam untuk mencapai puncak dari jalur Kersik Tuo.",
+        "Waktu Turun": "Turun memakan waktu sekitar 6–8 jam.",
+        "Waktu Ideal Pendakian": "Untuk kenyamanan, pendakian biasanya dilakukan selama 2 hari dengan bermalam di shelter."
+      },
+      "Gunung Ijen": {
+        "Jalur Kawah Ijen": "Jalur Kawah Ijen populer untuk melihat blue fire di malam hari.",
+        "Masker Gas": "Masker gas diperlukan karena asap belerang yang tebal.",
+        "Waktu Pendakian": "Pendakian Gunung Ijen sangat singkat, hanya membutuhkan 1–2 jam dari pos pertama untuk mencapai kawah.",
+        "Waktu Terbaik Blue Fire": "Mulailah pendakian pada malam hari jika ingin melihat blue fire.",
+        "Waktu Turun": "Turun memakan waktu sekitar 1 jam."
+      }
+    }
+  },
+  {
+    "intent": "Komunitas Pendaki",
+    "patterns": [
+      "Bagaimana cara bergabung dengan komunitas pendaki?",
+      "Apakah ada komunitas pendaki yang sering mendaki gunung ini?",
+      "Bagaimana cara mendapatkan informasi tentang pendakian dari komunitas?",
+      "Seberapa penting bergabung dengan komunitas pendaki?",
+      "Apakah komunitas pendaki menyediakan panduan atau pemandu?",
+      "Bagaimana komunitas pendaki membantu pendaki pemula?",
+      "Apakah ada acara atau pertemuan yang diadakan oleh komunitas pendaki?",
+      "Bagaimana cara berbagi pengalaman dengan komunitas pendaki?",
+      "Apakah komunitas pendaki memiliki aturan khusus yang harus diikuti?",
+      "Bagaimana cara membentuk komunitas pendaki lokal?"
+    ],
+    "response": {
+      "Gunung Rinjani": {
+        "Deskripsi": "Komunitas pendaki Gunung Rinjani sangat aktif, terutama di sekitar basecamp Senaru dan Sembalun. Mereka sering mengadakan acara bersih gunung dan berbagi tips pendakian.",
+        "Cara Bergabung": "Anda dapat menemukan rekan pendaki melalui fitur komunitas NusaTinggi."
+      },
+      "Gunung Merbabu": {
+        "Deskripsi": "Komunitas pendaki di Gunung Merbabu mendukung pendaki pemula dan sering menawarkan panduan gratis. Jalur populer seperti Selo memiliki grup hiking yang dapat membantu perencanaan Anda.",
+        "Cara Bergabung": "Gunakan forum NusaTinggi untuk mencari grup yang sesuai."
+      },
+      "Gunung Bromo": {
+        "Deskripsi": "Komunitas pendaki Bromo sering mengadakan acara hiking bersama untuk menikmati sunrise di Penanjakan. Anda juga dapat bertemu pendaki lokal yang berbagi pengalaman di kawasan Cemoro Lawang.",
+        "Cara Bergabung": "NusaTinggi memiliki fitur untuk mencari partner hiking."
+      },
+      "Gunung Prau": {
+        "Deskripsi": "Pendaki Gunung Prau sering bergabung dalam grup sosial di Dieng. Komunitas ini aktif mengadakan event seperti camping bersama atau pembersihan jalur.",
+        "Cara Bergabung": "Anda bisa bergabung melalui grup media sosial atau forum NusaTinggi."
+      },
+      "Gunung Ciremai": {
+        "Deskripsi": "Komunitas Gunung Ciremai terkenal dengan fokus mereka pada konservasi lingkungan. Mereka sering mengadakan acara penanaman pohon dan pembersihan jalur.",
+        "Cara Bergabung": "Anda juga dapat berbagi pengalaman pendakian di forum komunitas NusaTinggi."
+      },
+      "Gunung Kerinci": {
+        "Deskripsi": "Komunitas pendaki Gunung Kerinci mendukung pendaki solo dan grup. Mereka sering mengadakan acara sosial seperti kenduri sko dan kegiatan pelestarian lingkungan.",
+        "Cara Bergabung": "Temukan partner pendakian melalui grup diskusi di aplikasi NusaTinggi."
+      },
+      "Gunung Ijen": {
+        "Deskripsi": "Komunitas di Gunung Ijen fokus pada pengalaman wisata ramah lingkungan. Anda dapat berbagi cerita dengan pendaki lain atau bertemu pekerja tambang belerang yang sering berbagi tips keamanan.",
+        "Cara Bergabung": "Gunakan fitur komunitas NusaTinggi untuk terhubung dengan pendaki lainnya."
+      }
+    }
+  }
+]

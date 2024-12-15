@@ -38,7 +38,18 @@ const Product = sequelize.define('Product', {
   price: {
     type: DataTypes.FLOAT,
     allowNull: false,
-  }
+  },
+  userId: {
+    type: DataTypes.UUID,
+    allowNull: false,
+    references: {
+      model: 'Users',
+      key: 'id',
+    },
+    onDelete: 'CASCADE',
+  },
+}, {
+  timestamps: true,
 });
 
 module.exports = Product;
