@@ -4,7 +4,7 @@
 | No  | Nama              | Student ID   | Path            | LinkedIn                                      |
 | --- | ----------------- | ------------ | --------------- | -------------------------------------------- |
 | 1   | Muhammad Fatih Bari    | C318B4KY2839     | Cloud Computing | [LinkedIn](https://www.linkedin.com/in/muhammad-fatih-bari/) |
-| 2   | Ilham Firmansyah    | C318B4KY1938     | Cloud Computing | [LinkedIn](https://www.linkedin.com/in/namalinkedin2) |
+| 2   | Ilham Firmansyah    | C318B4KY1938     | Cloud Computing | [LinkedIn](https://www.linkedin.com/in/ilham-firmansyah-/) |
 | 3   | Keshin Ryandy    | M180B4KY2178     | Machine Learning | [LinkedIn](https://www.linkedin.com/in/namalinkedin3) |
 | 4   | Babtista Putri Grahani    | M467B4KX0781     | Machine Learning | [LinkedIn](https://www.linkedin.com/in/namalinkedin4) |
 | 5   | Indah Febri    | M310B4KX1969      | Machine Learning| [LinkedIn](https://www.linkedin.com/in/namalinkedin5) |
