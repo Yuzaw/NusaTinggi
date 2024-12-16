@@ -3,13 +3,13 @@
 ## Team Id : C242-PS454
 | No  | Nama              | Student ID   | Path            | LinkedIn                                      |
 | --- | ----------------- | ------------ | --------------- | -------------------------------------------- |
-| 1   | Muhammad Fatih Bari    | c318b4ky2839     | Cloud Computing | [LinkedIn](https://www.linkedin.com/in/muhammad-fatih-bari/) |
-| 2   | Ilham Firmansyah    | c318b4ky1938     | Cloud Computing | [LinkedIn](https://www.linkedin.com/in/namalinkedin2) |
-| 3   | Keshin Ryandy    | m180b4ky2178     | Machine Learning | [LinkedIn](https://www.linkedin.com/in/namalinkedin3) |
-| 4   | Babtista Putri Grahani    | m467b4kx0781     | Machine Learning | [LinkedIn](https://www.linkedin.com/in/namalinkedin4) |
-| 5   | Indah Febri    | m310b4kx1969      | Machine Learning| [LinkedIn](https://www.linkedin.com/in/namalinkedin5) |
-| 6   | Diasmara Sangwibawayani Suleksono    | a464b4ky1116     | Mobile Development | [LinkedIn](https://www.linkedin.com/in/namalinkedin4) |
-| 7   | GOLDEN AMORE    | a464b4ky1640     | Mobile Development | [LinkedIn](https://www.linkedin.com/in/namalinkedin5) |
+| 1   | Muhammad Fatih Bari    | C318B4KY2839     | Cloud Computing | [LinkedIn](https://www.linkedin.com/in/muhammad-fatih-bari/) |
+| 2   | Ilham Firmansyah    | C318B4KY1938     | Cloud Computing | [LinkedIn](https://www.linkedin.com/in/namalinkedin2) |
+| 3   | Keshin Ryandy    | M180B4KY2178     | Machine Learning | [LinkedIn](https://www.linkedin.com/in/namalinkedin3) |
+| 4   | Babtista Putri Grahani    | M467B4KX0781     | Machine Learning | [LinkedIn](https://www.linkedin.com/in/namalinkedin4) |
+| 5   | Indah Febri    | M310B4KX1969      | Machine Learning| [LinkedIn](https://www.linkedin.com/in/namalinkedin5) |
+| 6   | Diasmara Sangwibawayani Suleksono    | A464B4KY1116     | Mobile Development | [LinkedIn](https://www.linkedin.com/in/namalinkedin4) |
+| 7   | GOLDEN AMORE    | A464B4KY1640     | Mobile Development | [LinkedIn](https://www.linkedin.com/in/namalinkedin5) |
 
 
 ## About The Project
