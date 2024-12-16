@@ -1,0 +1,108 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:background="@drawable/background">
+
+    <!-- Card Container for Edit Profile Form -->
+    <androidx.cardview.widget.CardView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="32dp"
+        android:layout_centerInParent="true"
+        app:cardCornerRadius="16dp"
+        app:cardElevation="8dp">
+
+        <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="16dp">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <!-- Gambar Profil -->
+                <ImageView
+                    android:id="@+id/imageViewProfilePicture"
+                    android:layout_width="120dp"
+                    android:layout_height="120dp"
+                    android:layout_gravity="center"
+                    android:layout_marginBottom="16dp"
+                    android:scaleType="centerCrop"
+                    android:src="@drawable/ic_profile_placeholder"
+                    android:background="@drawable/round_background" />
+
+                <!-- Tombol Edit Gambar -->
+                <Button
+                    android:id="@+id/buttonEditImage"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_marginBottom="16dp"
+                    android:text="Edit Gambar"
+                    android:backgroundTint="@color/green"
+                    android:textColor="@color/white" />
+
+                <!-- Input Username -->
+                <EditText
+                    android:id="@+id/inputUsername"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="Username"
+                    android:inputType="text"
+                    android:layout_marginBottom="16dp"
+                    android:padding="12dp"
+                    android:background="@color/background" />
+
+                <!-- Input Email -->
+                <EditText
+                    android:id="@+id/inputEmail"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="Email"
+                    android:inputType="textEmailAddress"
+                    android:layout_marginBottom="16dp"
+                    android:padding="12dp"
+                    android:background="@color/background" />
+
+                <!-- Input Gender -->
+                <EditText
+                    android:id="@+id/inputGender"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="Gender"
+                    android:inputType="text"
+                    android:layout_marginBottom="16dp"
+                    android:padding="12dp"
+                    android:background="@color/background" />
+
+                <!-- Input Date of Birth -->
+                <EditText
+                    android:id="@+id/inputDateOfBirth"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="Tanggal Lahir (YYYY-MM-DD)"
+                    android:inputType="date"
+                    android:layout_marginBottom="16dp"
+                    android:padding="12dp"
+                    android:background="@color/background" />
+
+                <!-- Save Button -->
+                <Button
+                    android:id="@+id/buttonSave"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Simpan"
+                    android:textColor="@android:color/white"
+                    android:background="@color/green_primary"
+                    android:layout_marginBottom="16dp" />
+
+            </LinearLayout>
+
+        </ScrollView>
+
+    </androidx.cardview.widget.CardView>
+
+</RelativeLayout>

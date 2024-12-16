@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- Warna utama -->
+    <color name="green_primary">#4CAF50</color> <!-- Hijau utama -->
+    <color name="green_secondary">#2E7D32</color> <!-- Hijau gelap -->
+    <color name="green_light">#81C784</color> <!-- Hijau terang -->
+
+    <!-- Aksen -->
+    <color name="yellow_accent">#FFEB3B</color> <!-- Kuning -->
+
+    <!-- Warna latar -->
+    <color name="background">#FFFFFF</color> <!-- Putih -->
+    <color name="text_primary">#000000</color> <!-- Hitam -->
+    <color name="text_secondary">#424242</color> <!-- Abu-abu gelap -->
+    <color name="black">#000000</color>
+
+    <!-- Warna Gray -->
+    <color name="gray">#808080</color>
+
+    <!-- Warna Green -->
+    <color name="green">#4CAF50</color>
+    <color name="primary_color">#FF6200EE</color>
+    <color name="light_gray">#F0F0F0</color>
+
+
+    <!-- Warna White -->
+    <color name="white">#FFFFFF</color>
+</resources>

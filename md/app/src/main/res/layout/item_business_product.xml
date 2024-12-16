@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:card_view="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_margin="8dp"
+    card_view:cardCornerRadius="8dp"
+    card_view:cardElevation="4dp">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="8dp">
+
+        <!-- Product Image -->
+        <ImageView
+            android:id="@+id/img_product"
+            android:layout_width="match_parent"
+            android:layout_height="150dp"
+            android:scaleType="centerCrop"
+            android:src="@drawable/ic_placeholder_image" />
+
+        <!-- Product Title -->
+        <TextView
+            android:id="@+id/title_product"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:text="Product Title"
+            android:textColor="@android:color/black"
+            android:textSize="16sp"
+            android:textStyle="bold" />
+
+        <!-- Product Price -->
+        <TextView
+            android:id="@+id/price_product"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="4dp"
+            android:text="Rp 0.00"
+            android:textColor="@android:color/holo_green_dark"
+            android:textSize="14sp" />
+
+        <!-- Edit and Delete Buttons -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:gravity="end"
+            android:orientation="horizontal">
+
+            <ImageButton
+                android:id="@+id/btn_edit"
+                android:layout_width="48dp"
+                android:layout_height="48dp"
+                android:src="@drawable/ic_edit"
+                android:background="@drawable/rounded_circle_blue"
+                android:contentDescription="Edit Product"
+                android:layout_marginEnd="8dp"
+                android:scaleType="centerInside" />
+
+            <ImageButton
+                android:id="@+id/btn_delete"
+                android:layout_width="48dp"
+                android:layout_height="48dp"
+                android:src="@drawable/ic_delete"
+                android:background="@drawable/rounded_circle_red"
+                android:contentDescription="Delete Product"
+                android:scaleType="centerInside" />
+
+        </LinearLayout>
+
+    </LinearLayout>
+</androidx.cardview.widget.CardView>

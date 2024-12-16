@@ -1,0 +1,12 @@
+<resources>
+    <!-- Style untuk membuat ShapeAppearance lingkaran -->
+    <style name="ShapeAppearanceOverlay.MaterialComponents.Circle" parent="">
+        <item name="cornerFamily">rounded</item>
+        <item name="cornerSize">50%</item>
+    </style>
+    <style name="Theme.MyApp.Splash" parent="Theme.AppCompat.Light.NoActionBar">
+        <item name="android:windowBackground">@color/white</item>
+    </style>
+
+
+</resources>

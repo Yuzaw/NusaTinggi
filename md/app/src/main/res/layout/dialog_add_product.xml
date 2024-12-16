@@ -1,0 +1,47 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:padding="16dp">
+
+    <!-- Input Judul Produk -->
+    <EditText
+        android:id="@+id/etTitle"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Judul Produk"
+        android:inputType="text" />
+
+    <!-- Input Deskripsi Produk -->
+    <EditText
+        android:id="@+id/etDescription"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Deskripsi Produk"
+        android:inputType="text" />
+
+    <!-- Input Harga Produk -->
+    <EditText
+        android:id="@+id/etPrice"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Harga Produk"
+        android:inputType="numberDecimal" />
+
+    <!-- Tombol Pilih Gambar -->
+    <Button
+        android:id="@+id/btnSelectImage"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Pilih Gambar" />
+
+    <!-- Area Pratinjau Gambar yang Dipilih -->
+    <ImageView
+        android:id="@+id/ivSelectedImage"
+        android:layout_width="match_parent"
+        android:layout_height="200dp"
+        android:layout_marginTop="8dp"
+        android:scaleType="centerCrop"
+        android:contentDescription="Pratinjau Gambar"
+        android:src="@drawable/ic_placeholder_image" /> <!-- Placeholder Default -->
+</LinearLayout>

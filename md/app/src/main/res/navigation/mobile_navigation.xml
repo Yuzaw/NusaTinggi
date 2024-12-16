@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/mobile_navigation"
+    app:startDestination="@id/navigation_home">
+
+    <!-- Home Fragment -->
+    <fragment
+        android:id="@+id/navigation_home"
+        android:name="com.md40diasmara.nusatinggi.ui.home.HomeFragment"
+        android:label="Home"
+        tools:layout="@layout/fragment_home">
+
+        <!-- Action to Detail Fragment -->
+        <action
+            android:id="@+id/action_homeFragment_to_detailFragment"
+            app:destination="@id/detailFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/editProfilFragment"
+        android:name="com.md40diasmara.nusatinggi.ui.profil.EditProfilFragment"
+        android:label="Edit Profil"
+        tools:layout="@layout/fragment_edit_profil" />
+    <action
+        android:id="@+id/action_profilFragment_to_editProfilFragment"
+        app:destination="@id/editProfilFragment" />
+
+
+    <fragment
+        android:id="@+id/navigation_dashboard"
+        android:name="com.md40diasmara.nusatinggi.ui.chatbot.ChatbotFragment"
+        android:label="ChatBot"
+        tools:layout="@layout/fragment_chatbot" />
+
+    <fragment
+        android:id="@+id/navigation_notifications"
+        android:name="com.md40diasmara.nusatinggi.ui.profil.ProfilFragment"
+        android:label="Profil"
+        tools:layout="@layout/fragment_profil">
+        <action
+            android:id="@+id/action_profilFragment_to_businessFragment"
+            app:destination="@id/businessFragment" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/businessFragment"
+        android:name="com.md40diasmara.nusatinggi.ui.businesses.BusinessFragment"
+        android:label="Business"
+        tools:layout="@layout/fragment_business" />
+
+    <fragment
+        android:id="@+id/detailFragment"
+        android:name="com.md40diasmara.nusatinggi.ui.detail.DetailFragment"
+        android:label="Detail"
+        tools:layout="@layout/fragment_detail" />
+    <fragment
+        android:id="@+id/chatbotFragment"
+        android:name="com.md40diasmara.nusatinggi.ui.chatbot.ChatbotFragment"
+        android:label="Chatbot"
+        tools:layout="@layout/fragment_chatbot" />
+
+
+</navigation>
