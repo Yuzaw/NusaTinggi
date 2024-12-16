@@ -9,7 +9,7 @@
 | 4   | Babtista Putri Grahani    | m467b4kx0781     | Machine Learning | [LinkedIn](https://www.linkedin.com/in/namalinkedin4) |
 | 5   | Indah Febri    | m310b4kx1969      | Machine Learning| [LinkedIn](https://www.linkedin.com/in/namalinkedin5) |
 | 6   | Diasmara Sangwibawayani Suleksono    | a464b4ky1116     | Mobile Development | [LinkedIn](https://www.linkedin.com/in/namalinkedin4) |
-| 7   | GOLDEN AMORE    | 99887766     | a464b4ky1640 | [LinkedIn](https://www.linkedin.com/in/namalinkedin5) |
+| 7   | GOLDEN AMORE    | a464b4ky1640     | Mobile Development | [LinkedIn](https://www.linkedin.com/in/namalinkedin5) |
 
 
 ## About The Project
