@@ -3,7 +3,7 @@
 ## Team Id : C242-PS454
 | No  | Nama              | Student ID   | Path            | LinkedIn                                      |
 | --- | ----------------- | ------------ | --------------- | -------------------------------------------- |
-| 1   | Muhammad Fatih Bari    | c318b4ky2839     | Cloud Computing | [LinkedIn](https://www.linkedin.com/in/namalinkedin1) |
+| 1   | Muhammad Fatih Bari    | c318b4ky2839     | Cloud Computing | [LinkedIn](https://www.linkedin.com/in/muhammad-fatih-bari/) |
 | 2   | Ilham Firmansyah    | c318b4ky1938     | Cloud Computing | [LinkedIn](https://www.linkedin.com/in/namalinkedin2) |
 | 3   | Keshin Ryandy    | m180b4ky2178     | Machine Learning | [LinkedIn](https://www.linkedin.com/in/namalinkedin3) |
 | 4   | Babtista Putri Grahani    | m467b4kx0781     | Machine Learning | [LinkedIn](https://www.linkedin.com/in/namalinkedin4) |
